@@ -1,0 +1,1300 @@
+{
+   "4220":{
+      "NAME":"Emaar The Economic City",
+      "PRICE":"12.18",
+      "SECTOR":"Real Estate",
+      "AUTHORIZED CAPITAL (SAR)":"8,500,000,000",
+      "ISSUED SHARES":"850,000,000",
+      "PAID CAPITAL (SAR)":"8,500,000,000",
+      "BALANCE SHEET":{
+         "ANNUALLY":{
+            "2020-12-31":[
+               {
+                  "Current Assets":"1383433"
+               },
+               {
+                  "Inventory":"1460647"
+               },
+               {
+                  "Investments":"2445822"
+               },
+               {
+                  "Fixed Assets":"5609660"
+               },
+               {
+                  "Other Assets":"5417100"
+               },
+               {
+                  "Total Assets":"16316662"
+               },
+               {
+                  "Current Liabilities":"4759089"
+               },
+               {
+                  "Non-Current Liabilities":"5714300"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"5843273"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"16316662"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-03-31"
+               }
+            ],
+            "2019-12-31":[
+               {
+                  "Current Assets":"1430408"
+               },
+               {
+                  "Inventory":"1844506"
+               },
+               {
+                  "Investments":"2411927"
+               },
+               {
+                  "Fixed Assets":"5930630"
+               },
+               {
+                  "Other Assets":"5950319"
+               },
+               {
+                  "Total Assets":"17567790"
+               },
+               {
+                  "Current Liabilities":"3383835"
+               },
+               {
+                  "Non-Current Liabilities":"6829724"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"7354231"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"17567790"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-03-26"
+               }
+            ],
+            "2018-12-31":[
+               {
+                  "Current Assets":"2131915"
+               },
+               {
+                  "Inventory":"2014207"
+               },
+               {
+                  "Investments":"2422565"
+               },
+               {
+                  "Fixed Assets":"5517751"
+               },
+               {
+                  "Other Assets":"5255261"
+               },
+               {
+                  "Total Assets":"17341699"
+               },
+               {
+                  "Current Liabilities":"2252406"
+               },
+               {
+                  "Non-Current Liabilities":"7211834"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"7877459"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"17341699"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2019-03-28"
+               }
+            ],
+            "2017-12-31":[
+               {
+                  "Current Assets":"2839392"
+               },
+               {
+                  "Inventory":"1769398"
+               },
+               {
+                  "Investments":"2388691"
+               },
+               {
+                  "Fixed Assets":"5091433"
+               },
+               {
+                  "Other Assets":"5206727"
+               },
+               {
+                  "Total Assets":"17295641"
+               },
+               {
+                  "Current Liabilities":"1797052"
+               },
+               {
+                  "Non-Current Liabilities":"7491469"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"8007120"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"17295641"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2018-03-28"
+               }
+            ]
+         },
+         "QUARTERLY":{
+            "2021-03-31":[
+               {
+                  "Current Assets":"1358581"
+               },
+               {
+                  "Inventory":"1467595"
+               },
+               {
+                  "Investments":"2475458"
+               },
+               {
+                  "Fixed Assets":"5571560"
+               },
+               {
+                  "Other Assets":"5349217"
+               },
+               {
+                  "Total Assets":"16222411"
+               },
+               {
+                  "Current Liabilities":"4755955"
+               },
+               {
+                  "Non-Current Liabilities":"5803918"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"5662538"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"16222411"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-05-10"
+               }
+            ],
+            "2020-09-30":[
+               {
+                  "Current Assets":"1496996"
+               },
+               {
+                  "Inventory":"1469956"
+               },
+               {
+                  "Investments":"2425833"
+               },
+               {
+                  "Fixed Assets":"5796037"
+               },
+               {
+                  "Other Assets":"5597499"
+               },
+               {
+                  "Total Assets":"16786321"
+               },
+               {
+                  "Current Liabilities":"4405152"
+               },
+               {
+                  "Non-Current Liabilities":"5969740"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"6411429"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"16786321"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-11-10"
+               }
+            ],
+            "2020-06-30":[
+               {
+                  "Current Assets":"1517453"
+               },
+               {
+                  "Inventory":"1484143"
+               },
+               {
+                  "Investments":"2406215"
+               },
+               {
+                  "Fixed Assets":"5827114"
+               },
+               {
+                  "Other Assets":"5726844"
+               },
+               {
+                  "Total Assets":"16961769"
+               },
+               {
+                  "Current Liabilities":"4677070"
+               },
+               {
+                  "Non-Current Liabilities":"5695915"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"6588784"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"16961769"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-08-20"
+               }
+            ],
+            "2020-03-31":[
+               {
+                  "Current Assets":"1511923"
+               },
+               {
+                  "Inventory":"1500319"
+               },
+               {
+                  "Investments":"2405484"
+               },
+               {
+                  "Fixed Assets":"5883463"
+               },
+               {
+                  "Other Assets":"5812265"
+               },
+               {
+                  "Total Assets":"17113454"
+               },
+               {
+                  "Current Liabilities":"3547212"
+               },
+               {
+                  "Non-Current Liabilities":"6766083"
+               },
+               {
+                  "Other Liabilities":"0"
+               },
+               {
+                  "Shareholders Equity":"6800159"
+               },
+               {
+                  "Total Liabilities and Shareholder Equity":"17113454"
+               },
+               {
+                  "Minority Interests":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-06-15"
+               }
+            ]
+         }
+      },
+      "STATEMENT OF INCOME":{
+         "ANNUALLY":{
+            "2020-12-31":[
+               {
+                  "Sales":"547287"
+               },
+               {
+                  "Sales Cost":"866316"
+               },
+               {
+                  "Total Income":"-319029"
+               },
+               {
+                  "Other Revenues":"165843"
+               },
+               {
+                  "Total Revenues":"-153186"
+               },
+               {
+                  "Admin and Marketing Expenses":"356770"
+               },
+               {
+                  "Depreciation":"191786"
+               },
+               {
+                  "Other Expenses":"491622"
+               },
+               {
+                  "Total Expenses":"1040178"
+               },
+               {
+                  "Net Income Before Zakat":"-1193364"
+               },
+               {
+                  "Zakat":"55000"
+               },
+               {
+                  "Net Income":"-1248364"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-03-31"
+               }
+            ],
+            "2019-12-31":[
+               {
+                  "Sales":"986888"
+               },
+               {
+                  "Sales Cost":"684468"
+               },
+               {
+                  "Total Income":"302420"
+               },
+               {
+                  "Other Revenues":"110789"
+               },
+               {
+                  "Total Revenues":"413209"
+               },
+               {
+                  "Admin and Marketing Expenses":"370143"
+               },
+               {
+                  "Depreciation":"199521"
+               },
+               {
+                  "Other Expenses":"307353"
+               },
+               {
+                  "Total Expenses":"877017"
+               },
+               {
+                  "Net Income Before Zakat":"-463808"
+               },
+               {
+                  "Zakat":"45000"
+               },
+               {
+                  "Net Income":"-508808"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-03-26"
+               }
+            ],
+            "2018-12-31":[
+               {
+                  "Sales":"1008234"
+               },
+               {
+                  "Sales Cost":"669827"
+               },
+               {
+                  "Total Income":"338407"
+               },
+               {
+                  "Other Revenues":"251703"
+               },
+               {
+                  "Total Revenues":"590110"
+               },
+               {
+                  "Admin and Marketing Expenses":"345326"
+               },
+               {
+                  "Depreciation":"186514"
+               },
+               {
+                  "Other Expenses":"121931"
+               },
+               {
+                  "Total Expenses":"653771"
+               },
+               {
+                  "Net Income Before Zakat":"-63661"
+               },
+               {
+                  "Zakat":"66000"
+               },
+               {
+                  "Net Income":"-129661"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2019-03-28"
+               }
+            ],
+            "2017-12-31":[
+               {
+                  "Sales":"1437976"
+               },
+               {
+                  "Sales Cost":"615622"
+               },
+               {
+                  "Total Income":"822354"
+               },
+               {
+                  "Other Revenues":"150273"
+               },
+               {
+                  "Total Revenues":"972627"
+               },
+               {
+                  "Admin and Marketing Expenses":"315681"
+               },
+               {
+                  "Depreciation":"152368"
+               },
+               {
+                  "Other Expenses":"143819"
+               },
+               {
+                  "Total Expenses":"611868"
+               },
+               {
+                  "Net Income Before Zakat":"360759"
+               },
+               {
+                  "Zakat":"138038"
+               },
+               {
+                  "Net Income":"222721"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2018-03-28"
+               }
+            ]
+         },
+         "QUARTERLY":{
+            "2021-03-31":[
+               {
+                  "Sales":"83591"
+               },
+               {
+                  "Sales Cost":"100663"
+               },
+               {
+                  "Total Income":"-17072"
+               },
+               {
+                  "Other Revenues":"42380"
+               },
+               {
+                  "Total Revenues":"25308"
+               },
+               {
+                  "Admin and Marketing Expenses":"73827"
+               },
+               {
+                  "Depreciation":"46440"
+               },
+               {
+                  "Other Expenses":"81278"
+               },
+               {
+                  "Total Expenses":"201545"
+               },
+               {
+                  "Net Income Before Zakat":"-176237"
+               },
+               {
+                  "Zakat":"18250"
+               },
+               {
+                  "Net Income":"-194487"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-05-10"
+               }
+            ],
+            "2020-09-30":[
+               {
+                  "Sales":"132675"
+               },
+               {
+                  "Sales Cost":"122158"
+               },
+               {
+                  "Total Income":"10517"
+               },
+               {
+                  "Other Revenues":"38061"
+               },
+               {
+                  "Total Revenues":"48578"
+               },
+               {
+                  "Admin and Marketing Expenses":"89930"
+               },
+               {
+                  "Depreciation":"47076"
+               },
+               {
+                  "Other Expenses":"85161"
+               },
+               {
+                  "Total Expenses":"222167"
+               },
+               {
+                  "Net Income Before Zakat":"-173589"
+               },
+               {
+                  "Zakat":"13750"
+               },
+               {
+                  "Net Income":"-187339"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-11-10"
+               }
+            ],
+            "2020-06-30":[
+               {
+                  "Sales":"143101"
+               },
+               {
+                  "Sales Cost":"126100"
+               },
+               {
+                  "Total Income":"17001"
+               },
+               {
+                  "Other Revenues":"35859"
+               },
+               {
+                  "Total Revenues":"52860"
+               },
+               {
+                  "Admin and Marketing Expenses":"92590"
+               },
+               {
+                  "Depreciation":"50695"
+               },
+               {
+                  "Other Expenses":"100753"
+               },
+               {
+                  "Total Expenses":"244038"
+               },
+               {
+                  "Net Income Before Zakat":"-191178"
+               },
+               {
+                  "Zakat":"13750"
+               },
+               {
+                  "Net Income":"-204928"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-08-20"
+               }
+            ],
+            "2020-03-31":[
+               {
+                  "Sales":"205395"
+               },
+               {
+                  "Sales Cost":"244720"
+               },
+               {
+                  "Total Income":"-39325"
+               },
+               {
+                  "Other Revenues":"30497"
+               },
+               {
+                  "Total Revenues":"-8828"
+               },
+               {
+                  "Admin and Marketing Expenses":"83982"
+               },
+               {
+                  "Depreciation":"48322"
+               },
+               {
+                  "Other Expenses":"126619"
+               },
+               {
+                  "Total Expenses":"258923"
+               },
+               {
+                  "Net Income Before Zakat":"-267751"
+               },
+               {
+                  "Zakat":"13750"
+               },
+               {
+                  "Net Income":"-281501"
+               },
+               {
+                  "Balance First Period":"0"
+               },
+               {
+                  "Reserves":"0"
+               },
+               {
+                  "Cash Dividends":"0"
+               },
+               {
+                  "Other Distributions":"0"
+               },
+               {
+                  "Balance End Period":"0"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-06-15"
+               }
+            ]
+         }
+      },
+      "CASH FLOW":{
+         "ANNUALLY":{
+            "2020-12-31":[
+               {
+                  "Net Income":"-1193364"
+               },
+               {
+                  "Depreciation":"341912"
+               },
+               {
+                  "Accounts Receivable":"-84991"
+               },
+               {
+                  "Inventory":"110347"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"88834"
+               },
+               {
+                  "Other Changes in Oper. Activity":"665682"
+               },
+               {
+                  "Purchases of Fixed Assets":"-144002"
+               },
+               {
+                  "Other Changes in Investing Act.":"-100869"
+               },
+               {
+                  "Increase in Debts":"94196"
+               },
+               {
+                  "Other Changes in Financing Act.":"-7234"
+               },
+               {
+                  "Cash at Begining of Period":"404393"
+               },
+               {
+                  "Cash at End of Period":"174904"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-03-31"
+               }
+            ],
+            "2019-12-31":[
+               {
+                  "Net Income":"-463808"
+               },
+               {
+                  "Depreciation":"349945"
+               },
+               {
+                  "Accounts Receivable":"39737"
+               },
+               {
+                  "Inventory":"191079"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"154700"
+               },
+               {
+                  "Other Changes in Oper. Activity":"-512228"
+               },
+               {
+                  "Purchases of Fixed Assets":"-378910"
+               },
+               {
+                  "Other Changes in Investing Act.":"-12366"
+               },
+               {
+                  "Increase in Debts":"421398"
+               },
+               {
+                  "Other Changes in Financing Act.":"12214"
+               },
+               {
+                  "Cash at Begining of Period":"602632"
+               },
+               {
+                  "Cash at End of Period":"404393"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-03-26"
+               }
+            ],
+            "2018-12-31":[
+               {
+                  "Net Income":"-71588"
+               },
+               {
+                  "Depreciation":"292991"
+               },
+               {
+                  "Accounts Receivable":"-70584"
+               },
+               {
+                  "Inventory":"-201826"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"-14154"
+               },
+               {
+                  "Other Changes in Oper. Activity":"-540648"
+               },
+               {
+                  "Purchases of Fixed Assets":"-392516"
+               },
+               {
+                  "Other Changes in Investing Act.":"306744"
+               },
+               {
+                  "Increase in Debts":"58750"
+               },
+               {
+                  "Other Changes in Financing Act.":"7653"
+               },
+               {
+                  "Cash at Begining of Period":"1227810"
+               },
+               {
+                  "Cash at End of Period":"602632"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2019-03-28"
+               }
+            ],
+            "2017-12-31":[
+               {
+                  "Net Income":"388862"
+               },
+               {
+                  "Depreciation":"232584"
+               },
+               {
+                  "Accounts Receivable":"-159169"
+               },
+               {
+                  "Inventory":"-277180"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"-149010"
+               },
+               {
+                  "Other Changes in Oper. Activity":"-232379"
+               },
+               {
+                  "Purchases of Fixed Assets":"-652010"
+               },
+               {
+                  "Other Changes in Investing Act.":"391998"
+               },
+               {
+                  "Increase in Debts":"500000"
+               },
+               {
+                  "Other Changes in Financing Act.":"6718"
+               },
+               {
+                  "Cash at Begining of Period":"1177396"
+               },
+               {
+                  "Cash at End of Period":"1227810"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2018-03-28"
+               }
+            ]
+         },
+         "QUARTERLY":{
+            "2021-03-31":[
+               {
+                  "Net Income":"-176237"
+               },
+               {
+                  "Depreciation":"77817"
+               },
+               {
+                  "Accounts Receivable":"-6458"
+               },
+               {
+                  "Inventory":"2652"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"81999"
+               },
+               {
+                  "Other Changes in Oper. Activity":"126033"
+               },
+               {
+                  "Purchases of Fixed Assets":"-22308"
+               },
+               {
+                  "Other Changes in Investing Act.":"4944"
+               },
+               {
+                  "Increase in Debts":"-27645"
+               },
+               {
+                  "Other Changes in Financing Act.":"-6236"
+               },
+               {
+                  "Cash at Begining of Period":"174904"
+               },
+               {
+                  "Cash at End of Period":"229465"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2021-05-10"
+               }
+            ],
+            "2020-09-30":[
+               {
+                  "Net Income":"-632518"
+               },
+               {
+                  "Depreciation":"257410"
+               },
+               {
+                  "Accounts Receivable":"-174551"
+               },
+               {
+                  "Inventory":"93457"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"-24447"
+               },
+               {
+                  "Other Changes in Oper. Activity":"354198"
+               },
+               {
+                  "Purchases of Fixed Assets":"-70375"
+               },
+               {
+                  "Other Changes in Investing Act.":"-100642"
+               },
+               {
+                  "Increase in Debts":"98452"
+               },
+               {
+                  "Other Changes in Financing Act.":"-32836"
+               },
+               {
+                  "Cash at Begining of Period":"404393"
+               },
+               {
+                  "Cash at End of Period":"172541"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-11-10"
+               }
+            ],
+            "2020-06-30":[
+               {
+                  "Net Income":"-458929"
+               },
+               {
+                  "Depreciation":"173318"
+               },
+               {
+                  "Accounts Receivable":"-163579"
+               },
+               {
+                  "Inventory":"75750"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"30086"
+               },
+               {
+                  "Other Changes in Oper. Activity":"254080"
+               },
+               {
+                  "Purchases of Fixed Assets":"-39672"
+               },
+               {
+                  "Other Changes in Investing Act.":"-6702"
+               },
+               {
+                  "Increase in Debts":"86396"
+               },
+               {
+                  "Other Changes in Financing Act.":"-25201"
+               },
+               {
+                  "Cash at Begining of Period":"404393"
+               },
+               {
+                  "Cash at End of Period":"329940"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-08-20"
+               }
+            ],
+            "2020-03-31":[
+               {
+                  "Net Income":"-267751"
+               },
+               {
+                  "Depreciation":"84837"
+               },
+               {
+                  "Accounts Receivable":"-139779"
+               },
+               {
+                  "Inventory":"56782"
+               },
+               {
+                  "Prepaid Expenses":"0"
+               },
+               {
+                  "Accounts Payable":"23114"
+               },
+               {
+                  "Other Changes in Oper. Activity":"81750"
+               },
+               {
+                  "Purchases of Fixed Assets":"-22367"
+               },
+               {
+                  "Other Changes in Investing Act.":"-4361"
+               },
+               {
+                  "Increase in Debts":"57743"
+               },
+               {
+                  "Other Changes in Financing Act.":"-15139"
+               },
+               {
+                  "Cash at Begining of Period":"404393"
+               },
+               {
+                  "Cash at End of Period":"259222"
+               },
+               {
+                  "All figures are in":"Thousands"
+               },
+               {
+                  "Currency":"SAR"
+               },
+               {
+                  "Last Update Date":"2020-06-15"
+               }
+            ]
+         }
+      }
+   }
+}
