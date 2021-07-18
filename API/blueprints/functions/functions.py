@@ -7,6 +7,7 @@ client = pymongo.MongoClient(
     "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul?retryWrites=true&w=majority")
 
 #vvvvvvv
+#newComment!!!!!!!!!!!!!!!!!!!!
 @functions.route("/functions/MarketCap", methods=["GET"])
 def get_market_cap():
     tadawul_db = client["Tadawul_v2"]
