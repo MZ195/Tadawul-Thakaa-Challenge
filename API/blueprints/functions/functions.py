@@ -9,14 +9,12 @@ client = pymongo.MongoClient(
 
 @functions.route("/functions/MarketCap", methods=["GET"])
 def get_market_cap():
-    tadawul_db = client["Tadawul"]
-    mycol = tadawul_db["Energy"]
-    res = mycol.find_one({"_id": ObjectId("60edbcdbd079723b37dd5bc9")})
+    tadawul_db = client["Tadawul_v2"]
+    mycol = tadawul_db["Financials"]
+    res = mycol.find_one({"_id": "1180"})
 
-    res["_id"] = 2222
-
-    price = float(res['2222']["PRICE"])
-    shares = int(res['2222']["ISSUED SHARES"])
+    price = float(res["PRICE"])
+    shares = int(res["ISSUED SHARES"])
 
     response = {}
     response["MarketCap"] = (price * shares)
@@ -30,14 +28,12 @@ def get_market_cap():
 @functions.route("/functions/EPS", methods=["GET"])
 def get_EPS():
     # http://localhost:7979/functions/EPS
-    tadawul_db = client["Tadawul"]
-    mycol = tadawul_db["Energy"]
-    res = mycol.find_one({"_id": ObjectId("60edbcdbd079723b37dd5bc9")})
+    tadawul_db = client["Tadawul_v2"]
+    mycol = tadawul_db["Financials"]
+    res = mycol.find_one({"_id": "1180"})
 
-    res["_id"] = 2222
-
-    shares = int(res['2222']["ISSUED SHARES"])
-    statement_of_income = res['2222']["STATEMENT OF INCOME"]["ANNUALLY"]
+    shares = int(res["ISSUED SHARES"])
+    statement_of_income = res["STATEMENT OF INCOME"]["ANNUALLY"]
 
     response = []
 
@@ -45,7 +41,7 @@ def get_EPS():
         year = statement.split('-')[0]
         current_response = {}
         net_income = float(
-            statement_of_income[statement][11]["Net Income"])*1000
+            statement_of_income[statement]["Net Income from Operations"])
         current_response["{}".format(year)] = net_income/shares
         response.append(current_response)
 
