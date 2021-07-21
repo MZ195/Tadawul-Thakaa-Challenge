@@ -6,13 +6,11 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import pymongo
 
-# All values most be multiplied by 1,000
-
 
 def setup():
     client = pymongo.MongoClient(
         "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul?retryWrites=true&w=majority")
-    mydb = client["Tadawul_v2"]
+    mydb = client["Tadawul"]
 
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-backgrounding-occluded-windows')
@@ -52,25 +50,28 @@ def scrape_table(content):
             if i > 0:
                 if len(str(row_content[i].text).strip()) > 1:
                     value_text = str(row_content[i].text).replace(",", "")
-                    if str(value_text).isnumeric():
+                    if str(value_text).isnumeric() or value_text[0] == "-":
                         value_text = float(value_text)*1000
                 else:
                     value_text = str(row_content[i].text).replace("-", "0")
+                if value_text == "0":
+                    value_text = float(value_text)
                 tab_text = str(row_content[0].text).strip().replace(".", "")
                 current_res["{}".format(tab_text)] = value_text
-                if i < 5:
+                if i < 4:
                     res[years[i-1]]["{}".format(tab_text)] = value_text
     return res
 
 
 def main():
     driver, mydb = setup()
-    company_code_list = ['2270', '8280', '8100',
+    company_code_list = ['4220', '1180', '1060', '1050', '1030', '1080', '8010', '8260', '8110', '1320', '8200', '2360', '4050', '2300', '6050',
+                         '4006', '2130', '4031', '2190', '4140', '2010', '2070', '2120', '4270', '4008', '5110', '4040', '2270', '8280', '8100',
                          '2200', '4020', '2230', '4260', '4003', '8190', '2330', '4030', '2220', '2002', '8300', '4291', '4160', '6010', '4005',
                          '4210', '2250', '8150', '1140', '1020', '1010', '1330', '3091', '3040', '3003', '3050', '3080', '3004', '3020', '3005',
                          '3090', '3001', '3002', '3060', '4001', '8250', '8040', '8310', '1182', '2160', '2140', '7020', '8120', '7040', '1301',
                          '3030', '3010', '4320', '8130', '7010', '7030', '8312', '8170', '2320', '4130', '4230', '8160', '2060', '1211', '2090',
-                         '8012', '6070', '1214', '4007', '2040', '6004', '4290', '8070', '4200', '8230', '4150', '2240', '2222', '1202',
+                         '8012', '6070', '1214', '4007', '2081', '2040', '6004', '4290', '8070', '4200', '8230', '4150', '2240', '2222', '1202',
                          '4009', '2370', '6060', '2310', '8180', '2150', '1303', '1210', '2340', '4141', '2080', '6020', '2110', '3008', '2170',
                          '8030', '2280', '4321', '4170', '2030', '7200', '4280', '4002', '1304', '4110', '4051', '7201', '8270', '4161', '1302',
                          '8210', '6040', '2180', '1201', '4070', '8240', '4012', '6090', '4250', '4190', '6001', '4300', '4004', '4010', '4261',
@@ -81,43 +82,58 @@ def main():
 
     for comany in company_code_list:
         current_company = {}
-        current_company["_id"] = comany
+        current_company["_id"] = int(comany)
         driver.get(
             f'https://www.saudiexchange.sa/wps/portal/tadawul/market-participants/issuers/issuers-directory/company-details/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zi_Tx8nD0MLIy83V1DjA0czVx8nYP8PI0MDAz0I4EKzBEKDEJDLYEKjJ0DA11MjQzcTfXDCSkoyE7zBAC-SKhH/?companySymbol={comany}#chart_tab1')
 
-        sleep(1.5)
+        price_table = driver.find_element_by_id("chart_tab1")
+        comany_price_component = price_table.find_element_by_tag_name("dd")
+        comany_price = comany_price_component.text
+
+        while comany_price == "":
+            driver.get(
+                f'https://www.saudiexchange.sa/wps/portal/tadawul/market-participants/issuers/issuers-directory/company-details/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zi_Tx8nD0MLIy83V1DjA0czVx8nYP8PI0MDAz0I4EKzBEKDEJDLYEKjJ0DA11MjQzcTfXDCSkoyE7zBAC-SKhH/?companySymbol={comany}#chart_tab1')
+            price_table = driver.find_element_by_id("chart_tab1")
+            comany_price_component = price_table.find_element_by_tag_name("dd")
+            comany_price = comany_price_component.text
 
         home_button = driver.find_element_by_id("logo")
         driver.execute_script(
             "return arguments[0].scrollIntoView(true);", home_button)
         sleep(1.5)
 
+        WebDriverWait(driver, 200).until(
+            EC.presence_of_element_located((By.ID, "chart_tab1")))
+
+        WebDriverWait(driver, 200).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "in_tbl")))
         comany_name_component = driver.find_element_by_class_name("clear_lft")
         comany_name_text = str(comany_name_component.text).split('\n')
         comany_name = comany_name_text[0].strip()
         comany_sector = comany_name_text[2].split("|")[0].split(":")[1].strip()
-        price_table = driver.find_element_by_id("chart_tab1")
-        comany_price_component = price_table.find_element_by_tag_name("dd")
-        comany_price = comany_price_component.text
 
         mycol = mydb["{}".format(comany_sector)]
 
         current_company["NAME"] = comany_name
-        current_company["PRICE"] = comany_price
+        if comany_price != "-":
+            current_company["PRICE"] = float(comany_price)
+        else:
+            current_company["PRICE"] = 0
         current_company["SECTOR"] = comany_sector
 
-        # WebDriverWait(driver, 200).until(
-        #     EC.presence_of_element_located((By.ID, "profileTab")))
+        WebDriverWait(driver, 200).until(
+            EC.presence_of_element_located((By.ID, "profileTab")))
 
         profile_component = driver.find_element_by_id("profileTab")
         profile_component.click()
         sleep(1.5)
 
-        # chart_tab5
         WebDriverWait(driver, 200).until(
             EC.presence_of_element_located((By.ID, "chart_tab5")))
 
         equity_component = driver.find_element_by_id("chart_tab5")
+        sleep(1.5)
+
         header = equity_component.find_element_by_tag_name("thead")
         header_elements = header.find_elements_by_tag_name("th")
 
@@ -132,8 +148,8 @@ def main():
         rows_content = str(table_rows[0].text).split(" ")
 
         for i in range(len(equity_statements)):
-            current_company[equity_statements[i]] = str(
-                rows_content[i]).replace(",", "")
+            current_company[equity_statements[i]] = int(str(
+                rows_content[i]).replace(",", ""))
 
         home_button = driver.find_element_by_id("logo")
         driver.execute_script(
@@ -176,6 +192,7 @@ def main():
             except:
                 print(sys.exc_info()[0])
                 print("Error when clicking next tab")
+                print(comany)
                 driver.quit()
                 exit(0)
 
@@ -194,6 +211,7 @@ def main():
             except:
                 print(sys.exc_info()[0])
                 print("Error when clicking Quarterly")
+                print(comany)
                 driver.quit()
                 exit(0)
 

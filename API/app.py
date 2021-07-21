@@ -1,12 +1,12 @@
 from flask import Flask
 
 # blueprint import
-from blueprints.functions.functions import functions
+from blueprints.others.others import others
 
 
 def create_app(app):
     # register blueprint
-    app.register_blueprint(functions)
+    app.register_blueprint(others)
 
     return app
 
