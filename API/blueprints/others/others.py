@@ -3,7 +3,7 @@ import pymongo
 
 others = Blueprint('others', __name__)
 client = pymongo.MongoClient(
-    "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul?retryWrites=true&w=majority")
+    "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
 
 
 @others.route("/others/MarketCap/", methods=["GET"])
