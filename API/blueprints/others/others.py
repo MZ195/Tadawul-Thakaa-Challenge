@@ -964,118 +964,6 @@ def get_ROE():
     return result
 
 
-@others.route("/others/Receivables_Turnover_Ratio/", methods=["GET"])
-def get_Receivables_Turnover_Ratio():
-    sector = request.args.get("sector")
-    ticker = request.args.get("ticker")
-
-    tadawul_db = client["Tadawul"]
-    mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
-
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
-
-    response = {}
-
-    for period in statement_of_income:
-        response['{}'.format(period)] = []
-        for statement in statement_of_income[period]:
-            year = statement.split('-')[0]
-            current_response = {}
-
-            # STATEMENT OF INCOME
-            sales = float(
-                statement_of_income[period][statement]["Sales"])
-
-            # CASH FLOW
-            accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
-
-            current_response["{}".format(
-                year)] = sales / accounts_receivable
-            response[period].append(current_response)
-
-    result = jsonify(response)
-    result.headers.add('Access-Control-Allow-Origin', '*')
-
-    return result
-
-
-@others.route("/others/Payable_Turnover_Ratio/", methods=["GET"])
-def get_Payable_Turnover_Ratio():
-    sector = request.args.get("sector")
-    ticker = request.args.get("ticker")
-
-    tadawul_db = client["Tadawul"]
-    mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
-
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
-
-    response = {}
-
-    for period in statement_of_income:
-        response['{}'.format(period)] = []
-        for statement in statement_of_income[period]:
-            year = statement.split('-')[0]
-            current_response = {}
-
-            # STATEMENT OF INCOME
-            sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
-
-            # CASH FLOW
-            accounts_payable = float(
-                cash_flow[period][statement]["Accounts Payable"])
-
-            current_response["{}".format(
-                year)] = sales_cost/accounts_payable
-            response[period].append(current_response)
-
-    result = jsonify(response)
-    result.headers.add('Access-Control-Allow-Origin', '*')
-
-    return result
-
-
-@others.route("/others/Inventory_Turnover_Ratio/", methods=["GET"])
-def get_Inventory_Turnover_Ratio():
-    sector = request.args.get("sector")
-    ticker = request.args.get("ticker")
-
-    tadawul_db = client["Tadawul"]
-    mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
-
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
-
-    response = {}
-
-    for period in statement_of_income:
-        response['{}'.format(period)] = []
-        for statement in statement_of_income[period]:
-            year = statement.split('-')[0]
-            current_response = {}
-
-            # STATEMENT OF INCOME
-            sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
-
-            # BALANCE SHEET
-            inventory = float(
-                balance_sheet[period][statement]["Inventory"])
-
-            current_response["{}".format(
-                year)] = sales_cost/inventory
-            response[period].append(current_response)
-
-    result = jsonify(response)
-    result.headers.add('Access-Control-Allow-Origin', '*')
-
-    return result
 
 
 @others.route("/others/Asset_Turnover_Ratio/", methods=["GET"])
@@ -1192,8 +1080,123 @@ def get_Equity_Turnover_Ratio():
     return result
 
 
-@others.route("/others/Days_in_Inventory/", methods=["GET"])
-def get_Days_in_Inventory():
+@others.route("/others/Receivables_Turnover_Ratio/", methods=["GET"])
+def get_Receivables_Turnover_Ratio():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    cash_flow = res["CASH FLOW"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+
+            # STATEMENT OF INCOME
+            sales = float(
+                statement_of_income[period][statement]["Sales"])
+
+            # CASH FLOW
+            accounts_receivable = float(
+                cash_flow[period][statement]["Accounts Receivable"])
+
+            current_response["{}".format(
+                year)] = sales / accounts_receivable
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+@others.route("/others/Payable_Turnover_Ratio/", methods=["GET"])
+def get_Payable_Turnover_Ratio():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    cash_flow = res["CASH FLOW"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+
+            # STATEMENT OF INCOME
+            sales_cost = float(
+                statement_of_income[period][statement]["Sales Cost"])
+
+            # CASH FLOW
+            accounts_payable = float(
+                cash_flow[period][statement]["Accounts Payable"])
+
+            current_response["{}".format(
+                year)] = sales_cost/accounts_payable
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+@others.route("/others/Inventory_Turnover_Ratio/", methods=["GET"])
+def get_Inventory_Turnover_Ratio():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    balance_sheet = res["BALANCE SHEET"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+
+            # STATEMENT OF INCOME
+            sales_cost = float(
+                statement_of_income[period][statement]["Sales Cost"])
+
+            # BALANCE SHEET
+            inventory = float(
+                balance_sheet[period][statement]["Inventory"])
+
+            current_response["{}".format(
+                year)] = sales_cost/inventory
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+
+@others.route("/others/Days_Inventory_Outstanding/", methods=["GET"])
+def get_Days_Inventory_Outstanding():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
@@ -1223,7 +1226,7 @@ def get_Days_in_Inventory():
                 balance_sheet[period][statement]["Inventory"])
 
             current_response["{}".format(
-                year)] = inventory/abs(sales_cost) * 365
+                year)] = abs(inventory/sales_cost * 365)
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -1272,19 +1275,165 @@ def get_Days_Sales_Outstanding():
     return result
 
 
+@others.route("/others/Days_Payable_Outstanding/", methods=["GET"])
+def get_Days_Payable_Outstanding():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    cash_flow = res["CASH FLOW"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+            if statement_of_income[period][statement] == {}:
+                break
+
+            # STATEMENT OF INCOME
+            sales_cost = float(
+                statement_of_income[period][statement]["Sales Cost"])
+
+            # CASH FLOW
+            accounts_payable = float(
+                cash_flow[period][statement]["Accounts Payable"])
+
+            current_response["{}".format(
+                year)] = abs(accounts_payable/sales_cost * 365)
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+## here we used 3 financial statements (check it with Mazen)
+@others.route("/others/Operating_Cycle/", methods=["GET"])
+def get_Operating_Cycle():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    cash_flow = res["CASH FLOW"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE SHEET"]
+
+
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+            if statement_of_income[period][statement] == {}:
+                break
+
+            # STATEMENT OF INCOME
+            sales = float(
+                statement_of_income[period][statement]["Sales"])
+            sales_cost = float(
+                statement_of_income[period][statement]["Sales Cost"])
+            
+            # BALANCE SHEET
+            inventory = float(
+                balance_sheet[period][statement]["Inventory"])
+
+            # CASH FLOW
+            accounts_receivable = float(
+                cash_flow[period][statement]["Accounts Receivable"])
+
+            current_response["{}".format(
+                year)] = abs(accounts_receivable/sales * 365) + abs(inventory/sales_cost * 365)
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+
+## here we used 3 financial statements (check it with Mazen)
+@others.route("/others/Cash_Conversion_Cycle/", methods=["GET"])
+def get_Cash_Conversion_Cycle():
+    sector = request.args.get("sector")
+    ticker = request.args.get("ticker")
+
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"_id": int(ticker)})
+
+    cash_flow = res["CASH FLOW"]
+    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE SHEET"]
+    response = {}
+
+    for period in statement_of_income:
+        response['{}'.format(period)] = []
+        for statement in statement_of_income[period]:
+            year = statement.split('-')[0]
+            current_response = {}
+            if statement_of_income[period][statement] == {}:
+                break
+
+            # STATEMENT OF INCOME
+            sales = float(
+                statement_of_income[period][statement]["Sales"])
+            sales_cost = float(
+                statement_of_income[period][statement]["Sales Cost"])
+            
+            # BALANCE SHEET
+            inventory = float(
+                balance_sheet[period][statement]["Inventory"])
+
+            # CASH FLOW
+            accounts_receivable = float(
+                cash_flow[period][statement]["Accounts Receivable"])
+            accounts_payable = float(
+                cash_flow[period][statement]["Accounts Payable"])
+
+            current_response["{}".format(
+                year)] = (abs(accounts_receivable/sales * 365) + abs(inventory/sales_cost * 365)) - abs(accounts_payable/sales_cost * 365)
+            response[period].append(current_response)
+
+    result = jsonify(response)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+
+    return result
+
+
+
 # comments  for later
 # def comments():
+
+    # Plowback ratio (retention)
+    # retained earnings
+
+    # Cash Dividend Payout Ratio = Cash Dividends / (Cash Flow from Operations – Capital Expenditures – Preferred Dividend Paid)
+    # Current Asset Turnover = (current_assets+inventory)/total_assets  #include inventory?  Avg values (beg+end)/2 ?
+    # Total Asset Turnover = total_income/total_assets  #Avg values (beg+end)/2 ?
 
     # FCF + its reltated ratios
     # CFO
     # Working Capital
 
-    # Plowback ratio (retention)
-    # retained earnings
-    # Cash Conversion Cycle
+
 
     # Bank-Related Ratios: (Page #6)
     # https://ecommons.luc.edu/cgi/viewcontent.cgi?article=1039&context=business_facpubs
+
 
     # file:///C:/Users/96656/Downloads/981-Article%20Text-529-0-10-19700101.pdf
     # The ratio of assets financed through borrowed capital
@@ -1294,58 +1443,3 @@ def get_Days_Sales_Outstanding():
     # The working capital ratio
     # The permanent solvency ratio
     # The equity concentration ratio
-
-    # Cash Dividend Payout Ratio = Cash Dividends / (Cash Flow from Operations – Capital Expenditures – Preferred Dividend Paid)
-    # Interest Coverage Ratio = EBITDA / Interest Expense
-    # @functions.route("/functions/Current_Asset_Turnover", methods=["GET"])
-    # def get_Current_Asset_Turnover():
-    #     tadawul_db = client["Tadawul_v2"]
-    #     mycol = tadawul_db["Industrials"]
-    #     res = mycol.find_one({"_id": "4031"})
-
-    #     balance_sheet = res["BALANCE SHEET"]["ANNUALLY"]
-    #     statement_of_income = res["STATEMENT OF INCOME"]["ANNUALLY"]
-    #     response = []
-
-    #     for statement in balance_sheet,statement_of_income: ########
-    #         year = statement.split('-')[0]
-    #         current_response = {}
-    #         current_assets = float(
-    #             balance_sheet[statement]["Current Assets"])
-    #         inventory = float(
-    #             balance_sheet[statement]["Inventory"])
-    #         total_assets = float(
-    #             balance_sheet[statement]["Total Assets"])
-    #         current_response["{}".format(year)] = (current_assets+inventory)/total_assets  #include inventory?  Avg values (beg+end)/2 ?
-    #         response.append(current_response)
-
-    #     result = jsonify(response)
-    #     result.headers.add('Access-Control-Allow-Origin', '*')
-
-    #     return result
-
-    # @functions.route("/functions/Total_Asset_Turnover", methods=["GET"])
-    # def get_Total_Asset_Turnover():
-    #     tadawul_db = client["Tadawul_v2"]
-    #     mycol = tadawul_db["Industrials"]
-    #     res = mycol.find_one({"_id": "4031"})
-
-    #     balance_sheet = res["BALANCE SHEET"]["ANNUALLY"]
-    #     statement_of_income = res["STATEMENT OF INCOME"]["ANNUALLY"]
-
-    #     response = []
-
-    #     for statement in balance_sheet,statement_of_income: ########
-    #         year = statement.split('-')[0]
-    #         current_response = {}
-    #         total_income = float(
-    #             statement_of_income[statement]["Total Income"])
-    #         total_assets = float(
-    #             balance_sheet[statement]["Total Assets"])
-    #         current_response["{}".format(year)] = total_income/total_assets  #Avg values (beg+end)/2 ?
-    #         response.append(current_response)
-
-    #     result = jsonify(response)
-    #     result.headers.add('Access-Control-Allow-Origin', '*')
-
-    #     return result
