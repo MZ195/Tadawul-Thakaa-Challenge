@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-4">
+    <div class="col">
+        <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sector
+            </button>
+            <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+                <li><a href="/sector/All" class="dropdown-item  text-light" >All</a></li>
+                <li><a href="/sector/Communication_Services" class="dropdown-item text-light">Communication Services</a></li>
+                <li><a href="/sector/ConsumerDiscretionary"class="dropdown-item text-light" >Consumer Discretionary</a></li>
+                <li><a href="/sector/ConsumerStaples" class="dropdown-item text-light">Consumer Staples</a></li>
+                <li><a href="/sector/Energy" class="dropdown-item text-light">Energy</a></li>
+                <li><a href="/sector/Financials" class="dropdown-item text-light">Financials</a></li>
+                <li><a href="/sector/HealthCare" class="dropdown-item text-light">Health Care</a></li>
+                <li><a href="/sector/Industrials" class="dropdown-item text-light">Industrials</a></li>
+                <li><a href="/sector/InformationTechnology" class="dropdown-item text-light">Information Technology</a></li>
+                <li><a href="/sector/Materials" class="dropdown-item text-light">Materials</a></li>
+                <li><a href="/sector/RealEstate" class="dropdown-item text-light">Real Estate</a></li>
+                <li><a href="/sector/Utilities" class="dropdown-item text-light">Utilities</a></li>
+            </ul>
+          </div>
+
+    </div>
+</div>
+    <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Sector</th>
+            <th scope="col">Authorized Capital </th>
+            <th scope="col">Issued Shares </th>
+            <th scope="col">Paid Capital</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for company in allCompanies %}
+        <tr>
+            <td></td>
+            <td>{{company.id}}</td>
+            <td>{{company.NAME}}</td>
+            <td>{{company.PRICE}}</td>
+            <td>{{company.SECTOR}}</td>
+            <td>{{company.AUTHORIZED_CAPITAL}} (SAR)</td>
+            <td>{{company.ISSUED_SHARES}}</td>
+            <td>{{company.PAID_CAPITAL}} (SAR)</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      
+
+
+{% endblock %}
+    

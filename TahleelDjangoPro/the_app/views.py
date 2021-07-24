@@ -1,10 +1,109 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse,request
 from .models import client
 
 
 # Create your views here.
+def cleanSector(sector):
+    print("intered cleanSector")
+    print(sector)
+    tadawul_db = client["Tadawul"]
+    mycol = tadawul_db[sector]
+    res = list(mycol.find({}))
+    listOfCompanies=[]
+    for company in res:
+        company["id"] = company["_id"]
+        del company["_id"]
+        company["AUTHORIZED_CAPITAL"] = company["AUTHORIZED CAPITAL (SAR)"]
+        del company["AUTHORIZED CAPITAL (SAR)"]
+        company["ISSUED_SHARES"] = company["ISSUED SHARES"]
+        del company["ISSUED SHARES"]
+        company["PAID_CAPITAL"] = company["PAID CAPITAL (SAR)"]
+        del company["PAID CAPITAL (SAR)"]
+        listOfCompanies.append(company)
+    return listOfCompanies
+def returnAllCompanies(CommunicationServicesSector,ConsumerDiscretionarySector,ConsumerStaplesSector,energySector,FinancialsSector,
+HealthCareSector,IndustrialsSector,InformationTechnologySector,MaterialsSector,RealEstateSector,UtilitiesSector):
+    allCompanies=[]
+    for com in CommunicationServicesSector:
+        allCompanies.append(com)
+    for com in ConsumerDiscretionarySector:
+        allCompanies.append(com)
+    for com in ConsumerStaplesSector:
+        allCompanies.append(com)
+    for com in energySector:
+        allCompanies.append(com)
+    for com in FinancialsSector:
+        allCompanies.append(com)
+    for com in HealthCareSector:
+        allCompanies.append(com)
+    for com in IndustrialsSector:
+        allCompanies.append(com)
+    for com in InformationTechnologySector:
+        allCompanies.append(com)
+    for com in MaterialsSector:
+        allCompanies.append(com)
+    for com in RealEstateSector:
+        allCompanies.append(com)
+    for com in UtilitiesSector:
+        allCompanies.append(com)
+    return allCompanies
+def sortByPrice(allCompanies):
+    n = len(allCompanies)
+    # Traverse through all array elements
+    for i in range(n-1):
+    # range(n) also work but outer loop will repeat one time more than needed.
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            # company["PRICE"]
+            if allCompanies[j]["PRICE"] < allCompanies[j + 1]["PRICE"] :
+                allCompanies[j], allCompanies[j + 1] = allCompanies[j + 1], allCompanies[j]
+    return allCompanies
 
+def allComs():
+    CommunicationServicesSector=cleanSector("Communication Services")
+    ConsumerDiscretionarySector=cleanSector("Consumer Discretionary")
+    ConsumerStaplesSector=cleanSector("Consumer Staples")
+    energySector=cleanSector("Energy")
+    FinancialsSector=cleanSector("Financials")
+    HealthCareSector=cleanSector("Health Care")
+    IndustrialsSector=cleanSector("Industrials")
+    InformationTechnologySector=cleanSector("Information Technology")
+    MaterialsSector=cleanSector("Materials")
+    RealEstateSector=cleanSector("Real Estate")
+    UtilitiesSector=cleanSector("Utilities")
+    allCompanies=returnAllCompanies(CommunicationServicesSector,ConsumerDiscretionarySector,ConsumerStaplesSector,energySector,FinancialsSector,HealthCareSector,IndustrialsSector,InformationTechnologySector,MaterialsSector,RealEstateSector,UtilitiesSector)
+    return sortByPrice(allCompanies)
+def main(request):
+    return redirect('/sector/All')
+
+def sector(request,sectorVal):
+    if sectorVal == "All":
+        all=allComs()
+        context ={"allCompanies": all}
+        return render(request, 'main.html',context)
+    else:
+        if sectorVal == "Communication_Services":
+            all=cleanSector("Communication Services")
+        elif sectorVal == "Energy":
+            all=cleanSector("Energy")
+        elif sectorVal == "ConsumerDiscretionary":
+            all=cleanSector("Consumer Discretionary")
+        elif sectorVal == "ConsumerStaples":
+            all=cleanSector("Consumer Staples")
+        elif sectorVal == "InformationTechnology":
+            all=cleanSector("Information Technology")
+        elif sectorVal == "HealthCare":
+            all=cleanSector("Health Care")
+        elif sectorVal == "RealEstate":
+            all=cleanSector("Real Estate")
+        else:
+            all=cleanSector(sectorVal)
+        context ={"allCompanies": all}
+        return render(request, 'main.html',context)
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal
@@ -246,7 +345,6 @@ def get_Total_Liabilities(request,sectorVal,tickerVal):
             response[period].append(current_response)
 
     result = JsonResponse(response)
-    # result.headers.add('Access-Control-Allow-Origin', '*')
 
     return result
 
