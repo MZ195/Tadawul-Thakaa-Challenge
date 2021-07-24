@@ -10,7 +10,7 @@ import pymongo
 def setup():
     client = pymongo.MongoClient(
         "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul?retryWrites=true&w=majority")
-    mydb = client["Tadawul"]
+    mydb = client["Tadawul_v3"]
 
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-backgrounding-occluded-windows')
@@ -29,12 +29,14 @@ def setup():
 
 
 def scrape_table(content):
+    sleep(1.5)
     header = content.find_element_by_tag_name("thead")
     header_elements = header.find_elements_by_tag_name("th")
     years = []
     res = {}
     for i in range(len(header_elements)):
-        el_text = str(header_elements[i].text).strip()
+        el_text = str(header_elements[i].text).replace(
+            "(SAR)", "").strip().replace(" ", "_").replace("-", "_")
         if el_text != "":
             if i > 0:
                 years.append(el_text)
@@ -56,18 +58,17 @@ def scrape_table(content):
                     value_text = str(row_content[i].text).replace("-", "0")
                 if value_text == "0":
                     value_text = float(value_text)
-                tab_text = str(row_content[0].text).strip().replace(".", "")
+                tab_text = str(row_content[0].text).replace(
+                    "(SAR)", "").strip().replace(" ", "_").replace("-", "_").replace(".", "")
                 current_res["{}".format(tab_text)] = value_text
-                if i < 4:
+                if i < (len(row_content)) and i <= len(years):
                     res[years[i-1]]["{}".format(tab_text)] = value_text
     return res
 
 
 def main():
     driver, mydb = setup()
-    company_code_list = ['4220', '1180', '1060', '1050', '1030', '1080', '8010', '8260', '8110', '1320', '8200', '2360', '4050', '2300', '6050',
-                         '4006', '2130', '4031', '2190', '4140', '2010', '2070', '2120', '4270', '4008', '5110', '4040', '2270', '8280', '8100',
-                         '2200', '4020', '2230', '4260', '4003', '8190', '2330', '4030', '2220', '2002', '8300', '4291', '4160', '6010', '4005',
+    company_code_list = ['2220', '2002', '8300', '4291', '4160', '6010', '4005',
                          '4210', '2250', '8150', '1140', '1020', '1010', '1330', '3091', '3040', '3003', '3050', '3080', '3004', '3020', '3005',
                          '3090', '3001', '3002', '3060', '4001', '8250', '8040', '8310', '1182', '2160', '2140', '7020', '8120', '7040', '1301',
                          '3030', '3010', '4320', '8130', '7010', '7030', '8312', '8170', '2320', '4130', '4230', '8160', '2060', '1211', '2090',
@@ -82,7 +83,7 @@ def main():
 
     for comany in company_code_list:
         current_company = {}
-        current_company["_id"] = int(comany)
+        current_company["TICKER"] = int(comany)
         driver.get(
             f'https://www.saudiexchange.sa/wps/portal/tadawul/market-participants/issuers/issuers-directory/company-details/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zi_Tx8nD0MLIy83V1DjA0czVx8nYP8PI0MDAz0I4EKzBEKDEJDLYEKjJ0DA11MjQzcTfXDCSkoyE7zBAC-SKhH/?companySymbol={comany}#chart_tab1')
 
@@ -100,7 +101,6 @@ def main():
         home_button = driver.find_element_by_id("logo")
         driver.execute_script(
             "return arguments[0].scrollIntoView(true);", home_button)
-        sleep(1.5)
 
         WebDriverWait(driver, 200).until(
             EC.presence_of_element_located((By.ID, "chart_tab1")))
@@ -110,7 +110,8 @@ def main():
         comany_name_component = driver.find_element_by_class_name("clear_lft")
         comany_name_text = str(comany_name_component.text).split('\n')
         comany_name = comany_name_text[0].strip()
-        comany_sector = comany_name_text[2].split("|")[0].split(":")[1].strip()
+        comany_sector = comany_name_text[2].split(
+            "|")[0].split(":")[1].strip().replace(" ", "_")
 
         mycol = mydb["{}".format(comany_sector)]
 
@@ -126,7 +127,6 @@ def main():
 
         profile_component = driver.find_element_by_id("profileTab")
         profile_component.click()
-        sleep(1.5)
 
         WebDriverWait(driver, 200).until(
             EC.presence_of_element_located((By.ID, "chart_tab5")))
@@ -139,7 +139,8 @@ def main():
 
         equity_statements = []
         for el in header_elements:
-            el_text = str(el.text).strip()
+            el_text = str(el.text).replace(
+                "(SAR)", "").strip().replace(" ", "_")
             equity_statements.append(el_text)
             current_company["{}".format(el_text)] = {}
 
@@ -188,7 +189,7 @@ def main():
                 if str(tab.text) == "XBRL":
                     break
                 link.click()
-                sleep(1)
+                sleep(1.5)
             except:
                 print(sys.exc_info()[0])
                 print("Error when clicking next tab")
@@ -196,9 +197,11 @@ def main():
                 driver.quit()
                 exit(0)
 
-            current_company["{}".format(tab.text)] = {}
+            tab_text = str(tab.text).strip().replace(" ", "_")
 
-            current_company["{}".format(tab.text)]["ANNUALLY"] = scrape_table(
+            current_company["{}".format(tab_text)] = {}
+
+            current_company["{}".format(tab_text)]["ANNUALLY"] = scrape_table(
                 content)
 
             try:
@@ -218,7 +221,7 @@ def main():
             quaterly_table = content.find_element_by_id(
                 f"quaterlyStmtTable{table_count}")
 
-            current_company["{}".format(tab.text)]["QUARTERLY"] = scrape_table(
+            current_company["{}".format(tab_text)]["QUARTERLY"] = scrape_table(
                 quaterly_table)
             table_count += 1
         mycol.insert_one(current_company)
