@@ -44,7 +44,11 @@
             <td>{{company.id}}</td>
             <td>{{company.NAME}}</td>
             <td>{{company.PRICE}}</td>
-            <td>{{company.SECTOR}}</td>
+            <td>
+              {% load customizedTags %}
+              {{ company.SECTOR|ReplaceUnderScore }}
+              
+            </td>
             <td>{{company.AUTHORIZED_CAPITAL}} (SAR)</td>
             <td>{{company.ISSUED_SHARES}}</td>
             <td>{{company.PAID_CAPITAL}} (SAR)</td>
