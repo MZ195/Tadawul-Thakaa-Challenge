@@ -30,8 +30,9 @@
             <th></th>
             <th scope="col">Ticker</th>
             <th scope="col">Company Name</th>
-            <th scope="col">Price</th>
             <th scope="col">Sector</th>
+            <th scope="col">Price</th>
+            <th scope="col">Country </th>
             <th scope="col">Authorized Capital </th>
             <th scope="col">Issued Shares </th>
             <th scope="col">Paid Capital</th>
@@ -43,12 +44,13 @@
             <td></td>
             <td>{{company.id}}</td>
             <td>{{company.NAME}}</td>
-            <td>{{company.PRICE}}</td>
             <td>
               {% load customizedTags %}
               {{ company.SECTOR|ReplaceUnderScore }}
               
             </td>
+            <td>{{company.PRICE}}</td>
+            <td>KSA</td>
             <td>{{company.AUTHORIZED_CAPITAL}} (SAR)</td>
             <td>{{company.ISSUED_SHARES}}</td>
             <td>{{company.PAID_CAPITAL}} (SAR)</td>
