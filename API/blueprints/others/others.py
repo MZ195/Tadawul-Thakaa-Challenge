@@ -16,7 +16,7 @@ def get_market_cap():
     res = mycol.find_one({"_id": int(ticker)})
 
     price = float(res["PRICE"])
-    shares = int(res["ISSUED SHARES"])
+    shares = int(res["ISSUED_SHARES"])
 
     response = {}
     response["MarketCap"] = (price * shares)
@@ -36,8 +36,8 @@ def get_EPS():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    shares = int(res["ISSUED SHARES"])
-    statement_of_income = res["STATEMENT OF INCOME"]
+    shares = int(res["ISSUED_SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -47,7 +47,7 @@ def get_EPS():
             year = statement.split('-')[0]
             current_response = {}
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
             current_response["{}".format(year)] = net_income/shares
             response[period].append(current_response)
 
@@ -66,8 +66,8 @@ def get_Operating_EPS():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
-    shares = int(res["ISSUED SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    shares = int(res["ISSUED_SHARES"])
 
     response = {}
 
@@ -77,9 +77,9 @@ def get_Operating_EPS():
             year = statement.split('-')[0]
             current_response = {}
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             depreciation = float(
                 statement_of_income[period][statement]["Depreciation"])
             current_response["{}".format(year)] = (
@@ -101,7 +101,7 @@ def get_EBIT():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -111,9 +111,9 @@ def get_EBIT():
             year = statement.split('-')[0]
             current_response = {}
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             depreciation = float(
                 statement_of_income[period][statement]["Depreciation"])
             current_response["{}".format(
@@ -135,7 +135,7 @@ def get_EBITDA():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -145,9 +145,9 @@ def get_EBITDA():
             year = statement.split('-')[0]
             current_response = {}
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             current_response["{}".format(
                 year)] = total_income-admin_marketing_expenses
             response[period].append(current_response)
@@ -167,7 +167,7 @@ def get_Non_Current_Assets():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -177,9 +177,9 @@ def get_Non_Current_Assets():
             year = statement.split('-')[0]
             current_response = {}
             total_assets = float(
-                balance_sheet[period][statement]["Total Assets"])
+                balance_sheet[period][statement]["Total_Assets"])
             current_assets = float(
-                balance_sheet[period][statement]["Current Assets"])
+                balance_sheet[period][statement]["Current_Assets"])
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
             current_response["{}".format(
@@ -201,7 +201,7 @@ def get_Current_Assets():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -211,7 +211,7 @@ def get_Current_Assets():
             year = statement.split('-')[0]
             current_response = {}
             current_assets = float(
-                balance_sheet[period][statement]["Current Assets"])
+                balance_sheet[period][statement]["Current_Assets"])
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
             current_response["{}".format(
@@ -233,7 +233,7 @@ def get_Total_Liabilities():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -243,9 +243,9 @@ def get_Total_Liabilities():
             year = statement.split('-')[0]
             current_response = {}
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
             total_liabilities_and_shareholder_equity = float(
-                balance_sheet[period][statement]["Total Liabilities and Shareholder Equity"])
+                balance_sheet[period][statement]["Total_Liabilities_and_Shareholder_Equity"])
             current_response["{}".format(
                 year)] = total_liabilities_and_shareholder_equity - shareholders_equity
             response[period].append(current_response)
@@ -265,7 +265,7 @@ def get_Cash_Change():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
+    cash_flow = res["CASH_FLOW"]
 
     response = {}
 
@@ -275,9 +275,9 @@ def get_Cash_Change():
             year = statement.split('-')[0]
             current_response = {}
             cash_at_end = float(
-                cash_flow[period][statement]["Cash at End of Period"])
+                cash_flow[period][statement]["Cash_at_End_of_Period"])
             cash_at_begining = float(
-                cash_flow[period][statement]["Cash at Begining of Period"])
+                cash_flow[period][statement]["Cash_at_Begining_of_Period"])
             current_response["{}".format(
                 year)] = cash_at_end - cash_at_begining
             response[period].append(current_response)
@@ -297,8 +297,8 @@ def get_Book_Value():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    shares = int(res["ISSUED SHARES"])
+    balance_sheet = res["BALANCE_SHEET"]
+    shares = int(res["ISSUED_SHARES"])
 
     response = {}
 
@@ -308,7 +308,7 @@ def get_Book_Value():
             year = statement.split('-')[0]
             current_response = {}
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
             current_response["{}".format(
                 year)] = shareholders_equity/shares
             response[period].append(current_response)
@@ -328,8 +328,8 @@ def get_Dividends_Per_Share():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
-    shares = int(res["ISSUED SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    shares = int(res["ISSUED_SHARES"])
 
     response = {}
 
@@ -339,7 +339,7 @@ def get_Dividends_Per_Share():
             year = statement.split('-')[0]
             current_response = {}
             cash_dividends = float(
-                statement_of_income[period][statement]["Cash Dividends"])
+                statement_of_income[period][statement]["Cash_Dividends"])
             current_response["{}".format(
                 year)] = abs(cash_dividends/shares)
             response[period].append(current_response)
@@ -359,8 +359,8 @@ def get_PE():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
-    shares = int(res["ISSUED SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
 
     response = {}
@@ -371,7 +371,7 @@ def get_PE():
             year = statement.split('-')[0]
             current_response = {}
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
             current_response["{}".format(
                 year)] = price / (net_income/shares)
             response[period].append(current_response)
@@ -391,8 +391,8 @@ def get_Operating_Profit_Multiple():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
-    shares = int(res["ISSUED SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
 
     response = {}
@@ -403,9 +403,9 @@ def get_Operating_Profit_Multiple():
             year = statement.split('-')[0]
             current_response = {}
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             depreciation = float(
                 statement_of_income[period][statement]["Depreciation"])
             current_response["{}".format(
@@ -428,9 +428,9 @@ def get_PB():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    shares = int(res["ISSUED SHARES"])
+    shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -440,7 +440,7 @@ def get_PB():
             year = statement.split('-')[0]
             current_response = {}
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
             current_response["{}".format(
                 year)] = price / (shareholders_equity/shares)
             response[period].append(current_response)
@@ -460,9 +460,9 @@ def get_PS():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    shares = int(res["ISSUED SHARES"])
+    shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -492,7 +492,7 @@ def get_Current_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -503,11 +503,11 @@ def get_Current_Ratio():
             current_response = {}
 
             current_assets = float(
-                balance_sheet[period][statement]["Current Assets"])
+                balance_sheet[period][statement]["Current_Assets"])
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
             current_liabilities = float(
-                balance_sheet[period][statement]["Current Liabilities"])
+                balance_sheet[period][statement]["Current_Liabilities"])
 
             current_response["{}".format(
                 year)] = (
@@ -529,9 +529,9 @@ def get_Dividend_Yield():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    shares = int(res["ISSUED SHARES"])
+    shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -542,7 +542,7 @@ def get_Dividend_Yield():
             current_response = {}
 
             cash_dividends = float(
-                statement_of_income[period][statement]["Cash Dividends"])
+                statement_of_income[period][statement]["Cash_Dividends"])
 
             current_response["{}".format(
                 year)] = abs(cash_dividends/shares)/price * 100
@@ -563,8 +563,8 @@ def get_Payout_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    shares = int(res["ISSUED SHARES"])
-    statement_of_income = res["STATEMENT OF INCOME"]
+    shares = int(res["ISSUED_SHARES"])
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -575,9 +575,9 @@ def get_Payout_Ratio():
             current_response = {}
 
             cash_dividends = float(
-                statement_of_income[period][statement]["Cash Dividends"])
+                statement_of_income[period][statement]["Cash_Dividends"])
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
             current_response["{}".format(
                 year)] = abs(cash_dividends/shares) / (net_income/shares) * 100
             response[period].append(current_response)
@@ -597,7 +597,7 @@ def get_Operating_Profit_Margin():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -608,9 +608,9 @@ def get_Operating_Profit_Margin():
             current_response = {}
 
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             depreciation = float(
                 statement_of_income[period][statement]["Depreciation"])
             sales = float(
@@ -636,7 +636,7 @@ def get_Net_Margin():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    statement_of_income = res["STATEMENT OF INCOME"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -647,7 +647,7 @@ def get_Net_Margin():
             current_response = {}
 
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
@@ -670,8 +670,8 @@ def get_Equity_to_Capital():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    capital = int(res["PAID CAPITAL (SAR)"])
-    balance_sheet = res["BALANCE SHEET"]
+    capital = int(res["PAID_CAPITAL"])
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -682,7 +682,7 @@ def get_Equity_to_Capital():
             current_response = {}
 
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
 
             current_response["{}".format(
                 year)] = shareholders_equity/capital * 100
@@ -703,7 +703,7 @@ def get_Debt_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -714,11 +714,11 @@ def get_Debt_Ratio():
             current_response = {}
 
             total_assets = float(
-                balance_sheet[period][statement]["Total Assets"])
+                balance_sheet[period][statement]["Total_Assets"])
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
             total_liabilities_and_shareholder_equity = float(
-                balance_sheet[period][statement]["Total Liabilities and Shareholder Equity"])
+                balance_sheet[period][statement]["Total_Liabilities_and_Shareholder_Equity"])
 
             current_response["{}".format(
                 year)] = (
@@ -740,7 +740,7 @@ def get_Debt_to_Equity():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
+    balance_sheet = res["BALANCE_SHEET"]
 
     response = {}
 
@@ -751,9 +751,9 @@ def get_Debt_to_Equity():
             current_response = {}
 
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
             total_liabilities_and_shareholder_equity = float(
-                balance_sheet[period][statement]["Total Liabilities and Shareholder Equity"])
+                balance_sheet[period][statement]["Total_Liabilities_and_Shareholder_Equity"])
 
             current_response["{}".format(
                 year)] = (
@@ -775,8 +775,8 @@ def get_Quick_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    cash_flow = res["CASH FLOW"]
+    balance_sheet = res["BALANCE_SHEET"]
+    cash_flow = res["CASH_FLOW"]
 
     response = {}
 
@@ -786,15 +786,15 @@ def get_Quick_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # CASH FLOW STATEMENT
+            # CASH_FLOW STATEMENT
             cash_at_end = float(
-                cash_flow[period][statement]["Cash at End of Period"])
+                cash_flow[period][statement]["Cash_at_End_of_Period"])
             accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
+                cash_flow[period][statement]["Accounts_Receivable"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             current_liabilities = float(
-                balance_sheet[period][statement]["Current Liabilities"])
+                balance_sheet[period][statement]["Current_Liabilities"])
 
             current_response["{}".format(
                 year)] = (
@@ -816,8 +816,8 @@ def get_Cash_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    cash_flow = res["CASH FLOW"]
+    balance_sheet = res["BALANCE_SHEET"]
+    cash_flow = res["CASH_FLOW"]
 
     response = {}
 
@@ -827,13 +827,13 @@ def get_Cash_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # CASH FLOW STATEMENT
+            # CASH_FLOW STATEMENT
             cash_at_end = float(
-                cash_flow[period][statement]["Cash at End of Period"])
+                cash_flow[period][statement]["Cash_at_End_of_Period"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             current_liabilities = float(
-                balance_sheet[period][statement]["Current Liabilities"])
+                balance_sheet[period][statement]["Current_Liabilities"])
 
             current_response["{}".format(
                 year)] = cash_at_end/current_liabilities
@@ -854,8 +854,8 @@ def get_ROA():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -865,13 +865,13 @@ def get_ROA():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             total_assets = float(
-                balance_sheet[period][statement]["Total Assets"])
+                balance_sheet[period][statement]["Total_Assets"])
 
             current_response["{}".format(
                 year)] = net_income/total_assets * 100
@@ -892,8 +892,8 @@ def get_ROTA():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -903,17 +903,17 @@ def get_ROTA():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             total_income = float(
-                statement_of_income[period][statement]["Total Income"])
+                statement_of_income[period][statement]["Total_Income"])
             admin_marketing_expenses = float(
-                statement_of_income[period][statement]["Admin and Marketing Expenses"])
+                statement_of_income[period][statement]["Admin_and_Marketing_Expenses"])
             depreciation = float(
                 statement_of_income[period][statement]["Depreciation"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             total_assets = float(
-                balance_sheet[period][statement]["Total Assets"])
+                balance_sheet[period][statement]["Total_Assets"])
 
             current_response["{}".format(
                 year)] = (
@@ -935,8 +935,8 @@ def get_ROE():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -946,13 +946,13 @@ def get_ROE():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             net_income = float(
-                statement_of_income[period][statement]["Net Income"])
+                statement_of_income[period][statement]["Net_Income"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
 
             current_response["{}".format(
                 year)] = net_income/shareholders_equity * 100
@@ -975,8 +975,8 @@ def get_Asset_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -986,13 +986,13 @@ def get_Asset_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             total_assets = float(
-                balance_sheet[period][statement]["Total Assets"])
+                balance_sheet[period][statement]["Total_Assets"])
 
             current_response["{}".format(
                 year)] = sales/total_assets
@@ -1013,8 +1013,8 @@ def get_Net_Fixed_Asset_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1024,13 +1024,13 @@ def get_Net_Fixed_Asset_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             fixed_assets = float(
-                balance_sheet[period][statement]["Fixed Assets"])
+                balance_sheet[period][statement]["Fixed_Assets"])
 
             current_response["{}".format(
                 year)] = sales/fixed_assets
@@ -1051,8 +1051,8 @@ def get_Equity_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1062,13 +1062,13 @@ def get_Equity_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             shareholders_equity = float(
-                balance_sheet[period][statement]["Shareholders Equity"])
+                balance_sheet[period][statement]["Shareholders_Equity"])
 
             current_response["{}".format(
                 year)] = sales / shareholders_equity
@@ -1089,8 +1089,8 @@ def get_Receivables_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1100,13 +1100,13 @@ def get_Receivables_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
+                cash_flow[period][statement]["Accounts_Receivable"])
 
             current_response["{}".format(
                 year)] = sales / accounts_receivable
@@ -1127,8 +1127,8 @@ def get_Payable_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1138,13 +1138,13 @@ def get_Payable_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_payable = float(
-                cash_flow[period][statement]["Accounts Payable"])
+                cash_flow[period][statement]["Accounts_Payable"])
 
             current_response["{}".format(
                 year)] = sales_cost/accounts_payable
@@ -1165,8 +1165,8 @@ def get_Inventory_Turnover_Ratio():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1176,11 +1176,11 @@ def get_Inventory_Turnover_Ratio():
             year = statement.split('-')[0]
             current_response = {}
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
@@ -1204,8 +1204,8 @@ def get_Days_Inventory_Outstanding():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    balance_sheet = res["BALANCE SHEET"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1217,11 +1217,11 @@ def get_Days_Inventory_Outstanding():
             if statement_of_income[period][statement] == {}:
                 break
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
 
-            # BALANCE SHEET
+            # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
@@ -1244,8 +1244,8 @@ def get_Days_Sales_Outstanding():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1257,13 +1257,13 @@ def get_Days_Sales_Outstanding():
             if statement_of_income[period][statement] == {}:
                 break
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
+                cash_flow[period][statement]["Accounts_Receivable"])
 
             current_response["{}".format(
                 year)] = abs(accounts_receivable/sales * 365)
@@ -1284,8 +1284,8 @@ def get_Days_Payable_Outstanding():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
 
     response = {}
 
@@ -1297,13 +1297,13 @@ def get_Days_Payable_Outstanding():
             if statement_of_income[period][statement] == {}:
                 break
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_payable = float(
-                cash_flow[period][statement]["Accounts Payable"])
+                cash_flow[period][statement]["Accounts_Payable"])
 
             current_response["{}".format(
                 year)] = abs(accounts_payable/sales_cost * 365)
@@ -1325,9 +1325,9 @@ def get_Operating_Cycle():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
-    balance_sheet = res["BALANCE SHEET"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
 
 
     response = {}
@@ -1340,19 +1340,19 @@ def get_Operating_Cycle():
             if statement_of_income[period][statement] == {}:
                 break
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
             
-            # BALANCE SHEET
+            # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
+                cash_flow[period][statement]["Accounts_Receivable"])
 
             current_response["{}".format(
                 year)] = abs(accounts_receivable/sales * 365) + abs(inventory/sales_cost * 365)
@@ -1375,9 +1375,9 @@ def get_Cash_Conversion_Cycle():
     mycol = tadawul_db[sector]
     res = mycol.find_one({"_id": int(ticker)})
 
-    cash_flow = res["CASH FLOW"]
-    statement_of_income = res["STATEMENT OF INCOME"]
-    balance_sheet = res["BALANCE SHEET"]
+    cash_flow = res["CASH_FLOW"]
+    statement_of_income = res["STATEMENT_OF_INCOME"]
+    balance_sheet = res["BALANCE_SHEET"]
     response = {}
 
     for period in statement_of_income:
@@ -1388,21 +1388,21 @@ def get_Cash_Conversion_Cycle():
             if statement_of_income[period][statement] == {}:
                 break
 
-            # STATEMENT OF INCOME
+            # STATEMENT_OF_INCOME
             sales = float(
                 statement_of_income[period][statement]["Sales"])
             sales_cost = float(
-                statement_of_income[period][statement]["Sales Cost"])
+                statement_of_income[period][statement]["Sales_Cost"])
             
-            # BALANCE SHEET
+            # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
-            # CASH FLOW
+            # CASH_FLOW
             accounts_receivable = float(
-                cash_flow[period][statement]["Accounts Receivable"])
+                cash_flow[period][statement]["Accounts_Receivable"])
             accounts_payable = float(
-                cash_flow[period][statement]["Accounts Payable"])
+                cash_flow[period][statement]["Accounts_Payable"])
 
             current_response["{}".format(
                 year)] = (abs(accounts_receivable/sales * 365) + abs(inventory/sales_cost * 365)) - abs(accounts_payable/sales_cost * 365)
@@ -1421,7 +1421,7 @@ def get_Cash_Conversion_Cycle():
     # Plowback ratio (retention)
     # retained earnings
 
-    # Cash Dividend Payout Ratio = Cash Dividends / (Cash Flow from Operations – Capital Expenditures – Preferred Dividend Paid)
+    # Cash Dividend Payout Ratio = Cash_Dividends / (CASH_FLOW from Operations – Capital Expenditures – Preferred Dividend Paid)
     # Current Asset Turnover = (current_assets+inventory)/total_assets  #include inventory?  Avg values (beg+end)/2 ?
     # Total Asset Turnover = total_income/total_assets  #Avg values (beg+end)/2 ?
 
@@ -1439,7 +1439,7 @@ def get_Cash_Conversion_Cycle():
     # The ratio of assets financed through borrowed capital
     # The financial dependency ratio
     # The financial leverage
-    # The golden rule of the balance sheet ratio
+    # The golden rule of the BALANCE_SHEET ratio
     # The working capital ratio
     # The permanent solvency ratio
     # The equity concentration ratio
