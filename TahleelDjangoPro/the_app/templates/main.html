@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load customizedTags %}
 <div class="row mt-4">
     <div class="col">
-        <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Sector
+      <!-- <select onchange="location = this.value;">
+        <option value="/finished">Finished</option>
+        <option value="/sector/Communication_Services">Break</option>
+        <option value="/issue">Issues</option>
+        <option value="/downtime">Downtime</option>
+</select> -->
+      <!-- <label class="d-block text-light">Sector:</label>
+                                    <select class="dropdown" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                                        <option selected value="/sector/All">All</option>
+                                          <option value="/sector/Communication_Services">Communication Services</option>
+                                    </select> -->
+        <div class="dropdown text-light">
+          Sector:
+            <button class="btn btn-dark dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {% if isAll %}
+              All
+              {% else %}
+              {{ allCompanies.0.SECTOR|ReplaceUnderScore }}
+              {% endif %}
             </button>
             <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
                 <li><a href="/sector/All" class="dropdown-item  text-light" >All</a></li>
@@ -28,32 +45,31 @@
         <thead>
           <tr>
             <th></th>
-            <th scope="col">Ticker</th>
-            <th scope="col">Company Name</th>
-            <th scope="col">Sector</th>
-            <th scope="col">Price</th>
-            <th scope="col">Country </th>
-            <th scope="col">Authorized Capital </th>
-            <th scope="col">Issued Shares </th>
-            <th scope="col">Paid Capital</th>
+            <th>Ticker</th>
+            <th>Company Name</th>
+            <th>Sector</th>
+            <th>Price</th>
+            <th>Country </th>
+            <th>Authorized Capital </th>
+            <th>Issued Shares </th>
+            <th>Paid Capital</th>
           </tr>
         </thead>
         <tbody>
         {% for company in allCompanies %}
         <tr>
             <td></td>
-            <td>{{company.id}}</td>
+            <td>{{company.TICKER}}</td>
             <td>{{company.NAME}}</td>
             <td>
-              {% load customizedTags %}
               {{ company.SECTOR|ReplaceUnderScore }}
               
             </td>
             <td>{{company.PRICE}}</td>
             <td>KSA</td>
-            <td>{{company.AUTHORIZED_CAPITAL}} (SAR)</td>
+            <td>{{company.AUTHORIZED_CAPITAL}}</td>
             <td>{{company.ISSUED_SHARES}}</td>
-            <td>{{company.PAID_CAPITAL}} (SAR)</td>
+            <td>{{company.PAID_CAPITAL}}</td>
           </tr>
         {% endfor %}
         </tbody>

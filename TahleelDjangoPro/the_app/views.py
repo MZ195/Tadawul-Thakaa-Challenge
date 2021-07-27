@@ -91,11 +91,14 @@ def sector(request,sectorVal):
     tadawul_db = client["Tadawul_v3"]
     if sectorVal == "All":
         all=allComs()
-        context ={"allCompanies": all}
+        context ={"allCompanies": all,
+        "isAll": True
+        }
         return render(request, 'main.html',context)
     else:
         all=makeSectorList(sectorVal)
-        context ={"allCompanies": all}
+        context ={"allCompanies": all,
+        "isAll": False}
         return render(request, 'main.html',context)
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
