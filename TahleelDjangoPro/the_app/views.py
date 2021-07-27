@@ -4,24 +4,11 @@ from .models import client
 
 
 # Create your views here.
-# def cleanSector(sector):
-#     print("intered cleanSector"]
-#     print(sector)
-#     tadawul_db = client["Tadawul_v3"]
-#     mycol = tadawul_db[sector]
-#     res = list(mycol.find({}))
-#     listOfCompanies=[]
-#     for company in res:
-#         company["id"] = company["TICKER"]
-#         del company["TICKER"]
-#         company["AUTHORIZED_CAPITAL"] = company["AUTHORIZED_CAPITAL (SAR)"]
-#         del company["AUTHORIZED_CAPITAL (SAR)"]
-#         company["ISSUED_SHARES"] = company["ISSUED_SHARES"]
-#         del company["ISSUED_SHARES"]
-#         company["PAID_CAPITAL"] = company["PAID_CAPITAL (SAR)"]
-#         del company["PAID_CAPITAL (SAR)"]
-#         listOfCompanies.append(company)
-#     return listOfCompanies
+# cur = conn.cursor()
+#     cur.execute(
+#         '''SELECT TICKER, NAME, SECTOR FROM "public"."companies_general"''')
+#     rows = cur.fetchall()
+#     conn.commit()
 def returnAllCompanies(Communication_Services_Sector,Consumer_Discretionary_Sector,Consumer_Staples_Sector,
     Energy_Sector,Financials_Sector,Health_Care_Sector,Industrials_Sector,Information_Technology_Sector,Materials_Sector,
     Real_Estate_Sector,Utilities_Sector):
@@ -51,15 +38,8 @@ def returnAllCompanies(Communication_Services_Sector,Consumer_Discretionary_Sect
     return allCompanies
 def sortByPrice(allCompanies):
     n = len(allCompanies)
-    # Traverse through all array elements
     for i in range(n-1):
-    # range(n) also work but outer loop will repeat one time more than needed.
-        # Last i elements are already in place
         for j in range(0, n-i-1):
-            # traverse the array from 0 to n-i-1
-            # Swap if the element found is greater
-            # than the next element
-            # company["PRICE"]
             if allCompanies[j]["PRICE"] < allCompanies[j + 1]["PRICE"] :
                 allCompanies[j], allCompanies[j + 1] = allCompanies[j + 1], allCompanies[j]
     return allCompanies
@@ -103,7 +83,6 @@ def sector(request,sectorVal):
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal
-
     tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
     res = mycol.find_one({"TICKER": int(ticker)})
