@@ -100,6 +100,7 @@ def main():
 
         equity_component = driver.find_element_by_id("chart_tab5")
         sleep(1.5)
+        sleep(1)
 
         header = equity_component.find_element_by_tag_name("thead")
         header_elements = header.find_elements_by_tag_name("th")

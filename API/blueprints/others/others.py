@@ -11,9 +11,9 @@ def get_market_cap():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     price = float(res["PRICE"])
     shares = int(res["ISSUED_SHARES"])
@@ -32,9 +32,9 @@ def get_EPS():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     shares = int(res["ISSUED_SHARES"])
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -62,9 +62,9 @@ def get_Operating_EPS():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
     shares = int(res["ISSUED_SHARES"])
@@ -97,9 +97,9 @@ def get_EBIT():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
 
@@ -131,9 +131,9 @@ def get_EBITDA():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
 
@@ -163,9 +163,9 @@ def get_Non_Current_Assets():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -197,9 +197,9 @@ def get_Current_Assets():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -229,9 +229,9 @@ def get_Total_Liabilities():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -261,9 +261,9 @@ def get_Cash_Change():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
 
@@ -293,9 +293,9 @@ def get_Book_Value():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     shares = int(res["ISSUED_SHARES"])
@@ -324,9 +324,9 @@ def get_Dividends_Per_Share():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
     shares = int(res["ISSUED_SHARES"])
@@ -355,9 +355,9 @@ def get_PE():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
     shares = int(res["ISSUED_SHARES"])
@@ -387,9 +387,9 @@ def get_Operating_Profit_Multiple():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
     shares = int(res["ISSUED_SHARES"])
@@ -424,9 +424,9 @@ def get_PB():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
@@ -441,8 +441,13 @@ def get_PB():
             current_response = {}
             shareholders_equity = float(
                 balance_sheet[period][statement]["Shareholders_Equity"])
-            current_response["{}".format(
-                year)] = price / (shareholders_equity/shares)
+
+            if shareholders_equity == 0 or shares == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = price / (shareholders_equity/shares)
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -456,9 +461,9 @@ def get_PS():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
@@ -473,8 +478,12 @@ def get_PS():
             current_response = {}
             sales = float(
                 statement_of_income[period][statement]["Sales"])
-            current_response["{}".format(
-                year)] = price / (sales/shares)
+            if sales == 0 or shares == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = price / (sales/shares)
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -488,9 +497,9 @@ def get_Current_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -525,9 +534,9 @@ def get_Dividend_Yield():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     shares = int(res["ISSUED_SHARES"])
     price = float(res["PRICE"])
@@ -544,8 +553,12 @@ def get_Dividend_Yield():
             cash_dividends = float(
                 statement_of_income[period][statement]["Cash_Dividends"])
 
-            current_response["{}".format(
-                year)] = abs(cash_dividends/shares)/price * 100
+            if shares == 0 or price == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = abs(cash_dividends/shares)/price * 100
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -559,9 +572,9 @@ def get_Payout_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     shares = int(res["ISSUED_SHARES"])
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -593,9 +606,9 @@ def get_Operating_Profit_Margin():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
 
@@ -616,9 +629,13 @@ def get_Operating_Profit_Margin():
             sales = float(
                 statement_of_income[period][statement]["Sales"])
 
-            current_response["{}".format(
-                year)] = (
-                total_income-admin_marketing_expenses-depreciation)/sales * 100
+            if sales == 0:
+                current_response["{}".format(
+                year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = (
+                    total_income-admin_marketing_expenses-depreciation)/sales * 100
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -632,9 +649,9 @@ def get_Net_Margin():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     statement_of_income = res["STATEMENT_OF_INCOME"]
 
@@ -666,9 +683,9 @@ def get_Equity_to_Capital():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     capital = int(res["PAID_CAPITAL"])
     balance_sheet = res["BALANCE_SHEET"]
@@ -699,9 +716,9 @@ def get_Debt_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -736,9 +753,9 @@ def get_Debt_to_Equity():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
 
@@ -755,9 +772,13 @@ def get_Debt_to_Equity():
             total_liabilities_and_shareholder_equity = float(
                 balance_sheet[period][statement]["Total_Liabilities_and_Shareholder_Equity"])
 
-            current_response["{}".format(
-                year)] = (
-                total_liabilities_and_shareholder_equity-shareholders_equity)/shareholders_equity * 100
+            if shareholders_equity == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = (
+                    total_liabilities_and_shareholder_equity-shareholders_equity)/shareholders_equity * 100
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -771,9 +792,9 @@ def get_Quick_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     cash_flow = res["CASH_FLOW"]
@@ -812,9 +833,9 @@ def get_Cash_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     cash_flow = res["CASH_FLOW"]
@@ -850,9 +871,9 @@ def get_ROA():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -888,9 +909,9 @@ def get_ROTA():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -931,9 +952,9 @@ def get_ROE():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -964,16 +985,14 @@ def get_ROE():
     return result
 
 
-
-
 @others.route("/others/Asset_Turnover_Ratio/", methods=["GET"])
 def get_Asset_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1009,9 +1028,9 @@ def get_Net_Fixed_Asset_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1047,9 +1066,9 @@ def get_Equity_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1085,9 +1104,9 @@ def get_Receivables_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1108,8 +1127,12 @@ def get_Receivables_Turnover_Ratio():
             accounts_receivable = float(
                 cash_flow[period][statement]["Accounts_Receivable"])
 
-            current_response["{}".format(
-                year)] = sales / accounts_receivable
+            if accounts_receivable == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = sales / accounts_receivable
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -1123,9 +1146,9 @@ def get_Payable_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1146,8 +1169,12 @@ def get_Payable_Turnover_Ratio():
             accounts_payable = float(
                 cash_flow[period][statement]["Accounts_Payable"])
 
-            current_response["{}".format(
-                year)] = sales_cost/accounts_payable
+            if accounts_payable == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = sales_cost/accounts_payable
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -1161,9 +1188,9 @@ def get_Inventory_Turnover_Ratio():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1184,8 +1211,12 @@ def get_Inventory_Turnover_Ratio():
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
-            current_response["{}".format(
-                year)] = sales_cost/inventory
+            if inventory == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = sales_cost/inventory
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -1194,15 +1225,14 @@ def get_Inventory_Turnover_Ratio():
     return result
 
 
-
 @others.route("/others/Days_Inventory_Outstanding/", methods=["GET"])
 def get_Days_Inventory_Outstanding():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     balance_sheet = res["BALANCE_SHEET"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1225,8 +1255,12 @@ def get_Days_Inventory_Outstanding():
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
 
-            current_response["{}".format(
-                year)] = abs(inventory/sales_cost * 365)
+            if sales_cost == 0:
+                current_response["{}".format(
+                    year)] = 0
+            else:
+                current_response["{}".format(
+                    year)] = abs(inventory/sales_cost * 365)
             response[period].append(current_response)
 
     result = jsonify(response)
@@ -1240,9 +1274,9 @@ def get_Days_Sales_Outstanding():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1280,9 +1314,9 @@ def get_Days_Payable_Outstanding():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1315,20 +1349,19 @@ def get_Days_Payable_Outstanding():
     return result
 
 
-## here we used 3 financial statements (check it with Mazen)
+# here we used 3 financial statements (check it with Mazen)
 @others.route("/others/Operating_Cycle/", methods=["GET"])
 def get_Operating_Cycle():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
     balance_sheet = res["BALANCE_SHEET"]
-
 
     response = {}
 
@@ -1345,7 +1378,7 @@ def get_Operating_Cycle():
                 statement_of_income[period][statement]["Sales"])
             sales_cost = float(
                 statement_of_income[period][statement]["Sales_Cost"])
-            
+
             # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
@@ -1364,16 +1397,15 @@ def get_Operating_Cycle():
     return result
 
 
-
-## here we used 3 financial statements (check it with Mazen)
+# here we used 3 financial statements (check it with Mazen)
 @others.route("/others/Cash_Conversion_Cycle/", methods=["GET"])
 def get_Cash_Conversion_Cycle():
     sector = request.args.get("sector")
     ticker = request.args.get("ticker")
 
-    tadawul_db = client["Tadawul"]
+    tadawul_db = client["Tadawul_v3"]
     mycol = tadawul_db[sector]
-    res = mycol.find_one({"_id": int(ticker)})
+    res = mycol.find_one({"TICKER": int(ticker)})
 
     cash_flow = res["CASH_FLOW"]
     statement_of_income = res["STATEMENT_OF_INCOME"]
@@ -1393,7 +1425,7 @@ def get_Cash_Conversion_Cycle():
                 statement_of_income[period][statement]["Sales"])
             sales_cost = float(
                 statement_of_income[period][statement]["Sales_Cost"])
-            
+
             # BALANCE_SHEET
             inventory = float(
                 balance_sheet[period][statement]["Inventory"])
@@ -1414,7 +1446,6 @@ def get_Cash_Conversion_Cycle():
     return result
 
 
-
 # comments  for later
 # def comments():
 
@@ -1429,11 +1460,8 @@ def get_Cash_Conversion_Cycle():
     # CFO
     # Working Capital
 
-
-
     # Bank-Related Ratios: (Page #6)
     # https://ecommons.luc.edu/cgi/viewcontent.cgi?article=1039&context=business_facpubs
-
 
     # file:///C:/Users/96656/Downloads/981-Article%20Text-529-0-10-19700101.pdf
     # The ratio of assets financed through borrowed capital
