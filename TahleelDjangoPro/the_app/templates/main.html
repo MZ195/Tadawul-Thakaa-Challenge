@@ -1,49 +1,210 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load customizedTags %}
+<div class="card bg-dark text-light">
+  <div class="card-header">
+    Filters
+  </div>
+  <div class="card-body">
 <div class="row mt-4">
     <div class="col">
-      <!-- <select onchange="location = this.value;">
-        <option value="/finished">Finished</option>
-        <option value="/sector/Communication_Services">Break</option>
-        <option value="/issue">Issues</option>
-        <option value="/downtime">Downtime</option>
-</select> -->
-      <!-- <label class="d-block text-light">Sector:</label>
-                                    <select class="dropdown" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                                        <option selected value="/sector/All">All</option>
-                                          <option value="/sector/Communication_Services">Communication Services</option>
-                                    </select> -->
-        <div class="dropdown text-light">
+        <div class="dropdown text-light  ">
           Sector:
-            <button class="btn btn-dark dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               {% if isAll %}
               All
               {% else %}
               {{ allCompanies.0.SECTOR|ReplaceUnderScore }}
               {% endif %}
             </button>
-            <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-                <li><a href="/sector/All" class="dropdown-item  text-light" >All</a></li>
-                <li><a href="/sector/Communication_Services" class="dropdown-item text-light">Communication Services</a></li>
-                <li><a href="/sector/Consumer_Discretionary"class="dropdown-item text-light" >Consumer Discretionary</a></li>
-                <li><a href="/sector/Consumer_Staples" class="dropdown-item text-light">Consumer Staples</a></li>
-                <li><a href="/sector/Energy" class="dropdown-item text-light">Energy</a></li>
-                <li><a href="/sector/Financials" class="dropdown-item text-light">Financials</a></li>
-                <li><a href="/sector/Health_Care" class="dropdown-item text-light">Health Care</a></li>
-                <li><a href="/sector/Industrials" class="dropdown-item text-light">Industrials</a></li>
-                <li><a href="/sector/Information_Technology" class="dropdown-item text-light">Information Technology</a></li>
-                <li><a href="/sector/Materials" class="dropdown-item text-light">Materials</a></li>
-                <li><a href="/sector/Real_Estate" class="dropdown-item text-light">Real Estate</a></li>
-                <li><a href="/sector/Utilities" class="dropdown-item text-light">Utilities</a></li>
+            <ul class="dropdown-menu bg-dark text-info" >
+                <li><a href="/sector/All" class="dropdown-item  text-info" >All</a></li>
+                <li><a href="/sector/Communication_Services" class="dropdown-item text-info">Communication Services</a></li>
+                <li><a href="/sector/Consumer_Discretionary"class="dropdown-item text-info" >Consumer Discretionary</a></li>
+                <li><a href="/sector/Consumer_Staples" class="dropdown-item text-info">Consumer Staples</a></li>
+                <li><a href="/sector/Energy" class="dropdown-item text-info">Energy</a></li>
+                <li><a href="/sector/Financials" class="dropdown-item text-info">Financials</a></li>
+                <li><a href="/sector/Health_Care" class="dropdown-item text-info">Health Care</a></li>
+                <li><a href="/sector/Industrials" class="dropdown-item text-info">Industrials</a></li>
+                <li><a href="/sector/Information_Technology" class="dropdown-item text-info">Information Technology</a></li>
+                <li><a href="/sector/Materials" class="dropdown-item text-info">Materials</a></li>
+                <li><a href="/sector/Real_Estate" class="dropdown-item text-info">Real Estate</a></li>
+                <li><a href="/sector/Utilities" class="dropdown-item text-info">Utilities</a></li>
             </ul>
           </div>
-
     </div>
+    <div class="col">
+      <div class="dropdown text-light ">
+        Market Cap:
+          <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Any
+          </button>
+          <ul class="dropdown-menu bg-dark text-info" aria-labelledby="dropdownMenuButton1">
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          </ul>
+        </div>
+
+  </div>
+  <div class="col">
+    <div class="dropdown text-light ">
+      P/B:
+      <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Any
+      </button>
+      <ul class="dropdown-menu bg-dark text-infot" aria-labelledby="dropdownMenuButton1">
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+        </ul>
+      </div>
+
+</div>
+<div class="col">
+  <div class="dropdown text-light ">
+    P/E:
+    <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Any
+    </button>
+    <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+      </ul>
+    </div>
+</div>
+
+</div>
+<div class="row mt-4">
+  <div class="col">
+      <div class="dropdown text-light">
+        Current Ratio:
+        <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Any
+        </button>
+        <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          </ul>
+        </div>
+  </div>
+  <div class="col">
+    <div class="dropdown text-light">
+      Price:
+      <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Any
+      </button>
+      <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+        </ul>
+      </div>
+
+</div>
+<div class="col">
+  <div class="dropdown text-light">
+    Debt Ratio:
+    <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Any
+    </button>
+    <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+      </ul>
+    </div>
+
+</div>
+<div class="col">
+<div class="dropdown text-light">
+  EPS:
+  <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Any
+  </button>
+  <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="row mt-4">
+  <div class="col">
+    <div class="dropdown text-light">
+      EBIT:
+      <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Any
+      </button>
+      <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="dropdown text-light">
+        Operating EPS:
+        <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Any
+        </button>
+        <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="dropdown text-light">
+          ITR:
+          <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Any
+          </button>
+          <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+            </ul>
+          </div>
+      
+      </div>
+      
+      <div class="col">
+        <div class="dropdown text-light">
+          Quick Ratio:
+          <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Any
+          </button>
+          <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+            </ul>
+          </div>
+      
+      </div>
+</div>
+</div>
 </div>
     <table class="table table-dark table-hover">
         <thead>
-          <tr>
+          <tr class="text-info">
             <th></th>
             <th>Ticker</th>
             <th>Company Name</th>
