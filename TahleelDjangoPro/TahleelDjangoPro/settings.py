@@ -88,28 +88,8 @@ DATABASES = {
 
         'PORT': '5432',
 
-    
     }
 }
-# model.py file
-# from django.db import models
-# import pymongo
-# import psycopg2
-
-# # Create your models here.
-
-# client = pymongo.MongoClient(
-#     "mongodb+srv://Mezo:Almazni2013@tadawul-test.wkg8i.mongodb.net/Tadawul_v3?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
-
-#Create database connection postgres://ytvwlxfp:DQWgHzUZE_ormYbJ1UHzBJ_yatJCcss6@chunee.db.elephantsql.com/ytvwlxfp
-# postgresSQL = psycopg2.connect(
-#     database="ytvwlxfp",
-#                 user="ytvwlxfp",
-#                 password="DQWgHzUZE_ormYbJ1UHzBJ_yatJCcss6",
-#                 host="chunee.db.elephantsql.com",
-#                 port="5432"
-#                 )
-
 
 
 # Password validation
