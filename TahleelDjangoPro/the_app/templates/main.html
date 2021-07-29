@@ -1,54 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load customizedTags %}
-<div class="card bg-dark text-light">
+
+  
+<div class="card bg-dark text-light ">
   <div class="card-header">
     Filters
   </div>
   <div class="card-body">
-<div class="row mt-4">
-    <div class="col">
+<div class="row ">
+    <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light  ">
           Sector:
             <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              {% if isAll %}
-              All
-              {% else %}
-              {{ allCompanies.0.SECTOR|ReplaceUnderScore }}
-              {% endif %}
+              {{request.session.filterObj.Sector|ReplaceUnderScore}}
             </button>
             <ul class="dropdown-menu bg-dark text-info" >
-                <li><a href="/sector/All" class="dropdown-item  text-info" >All</a></li>
-                <li><a href="/sector/Communication_Services" class="dropdown-item text-info">Communication Services</a></li>
-                <li><a href="/sector/Consumer_Discretionary"class="dropdown-item text-info" >Consumer Discretionary</a></li>
-                <li><a href="/sector/Consumer_Staples" class="dropdown-item text-info">Consumer Staples</a></li>
-                <li><a href="/sector/Energy" class="dropdown-item text-info">Energy</a></li>
-                <li><a href="/sector/Financials" class="dropdown-item text-info">Financials</a></li>
-                <li><a href="/sector/Health_Care" class="dropdown-item text-info">Health Care</a></li>
-                <li><a href="/sector/Industrials" class="dropdown-item text-info">Industrials</a></li>
-                <li><a href="/sector/Information_Technology" class="dropdown-item text-info">Information Technology</a></li>
-                <li><a href="/sector/Materials" class="dropdown-item text-info">Materials</a></li>
-                <li><a href="/sector/Real_Estate" class="dropdown-item text-info">Real Estate</a></li>
-                <li><a href="/sector/Utilities" class="dropdown-item text-info">Utilities</a></li>
+                <li><a href="/filter/Sector/catagory/All" class="dropdown-item  text-info" >All</a></li>
+                <li><a href="/filter/Sector/catagory/Communication_Services" class="dropdown-item text-info">Communication Services</a></li>
+                <li><a href="/filter/Sector/catagory/Consumer_Discretionary"class="dropdown-item text-info" >Consumer Discretionary</a></li>
+                <li><a href="/filter/Sector/catagory/Consumer_Staples" class="dropdown-item text-info">Consumer Staples</a></li>
+                <li><a href="/filter/Sector/catagory/Energy" class="dropdown-item text-info">Energy</a></li>
+                <li><a href="/filter/Sector/catagory/Financials" class="dropdown-item text-info">Financials</a></li>
+                <li><a href="/filter/Sector/catagory/Health_Care" class="dropdown-item text-info">Health Care</a></li>
+                <li><a href="/filter/Sector/catagory/Industrials" class="dropdown-item text-info">Industrials</a></li>
+                <li><a href="/filter/Sector/catagory/Information_Technology" class="dropdown-item text-info">Information Technology</a></li>
+                <li><a href="/filter/Sector/catagory/Materials" class="dropdown-item text-info">Materials</a></li>
+                <li><a href="/filter/Sector/catagory/Real_Estate" class="dropdown-item text-info">Real Estate</a></li>
+                <li><a href="/filter/Sector/catagory/Utilities" class="dropdown-item text-info">Utilities</a></li>
             </ul>
           </div>
     </div>
-    <div class="col">
+    <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light ">
         Market Cap:
           <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Any
+            {{request.session.filterObj.MarketCap}}
           </button>
           <ul class="dropdown-menu bg-dark text-info" aria-labelledby="dropdownMenuButton1">
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+              <li><a href="/filter/MarketCap/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/MarketCap/catagory/Mega" class="dropdown-item  text-info" >Mega ($200bln and more)</a></li>
+              <li><a href="/filter/MarketCap/catagory/Nano" class="dropdown-item  text-info" >Nano (under $50mln)</a></li>
+              <li><a href="/filter/MarketCap/catagory/Large" class="dropdown-item  text-info" >Large ($10bln to $200bln)</a></li>
+              <li><a href="/filter/MarketCap/catagory/Mid" class="dropdown-item  text-info" >Mid ($2bln to $10bln)</a></li>
+              <li><a href="/filter/MarketCap/catagory/Small" class="dropdown-item  text-info" >Small ($300mln to $2bln)</a></li>
+              <li><a href="/filter/MarketCap/catagory/Micro" class="dropdown-item  text-info" >Micro ($50mln to $300mln))</a></li>
           </ul>
         </div>
 
   </div>
-  <div class="col">
+  <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light ">
       P/B:
       <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,7 +64,7 @@
       </div>
 
 </div>
-<div class="col">
+<div class="col-md-3 col-sm-12">
   <div class="dropdown text-light ">
     P/E:
     <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,8 +80,8 @@
 </div>
 
 </div>
-<div class="row mt-4">
-  <div class="col">
+<div class="row ">
+  <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light">
         Current Ratio:
         <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,22 +95,22 @@
           </ul>
         </div>
   </div>
-  <div class="col">
+  <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light">
       Price:
       <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Any
+        {{request.session.filterObj.PRICE}}
       </button>
       <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          <li><a href="/filter/PRICE/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/PRICE/catagory/High" class="dropdown-item  text-info" >High (>100)</a></li>
+          <li><a href="/filter/PRICE/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (50-100)</a></li>
+          <li><a href="/filter/PRICE/catagory/Low" class="dropdown-item  text-info" >Low (&lt50)</a></li>
         </ul>
       </div>
 
 </div>
-<div class="col">
+<div class="col-md-3 col-sm-12">
   <div class="dropdown text-light">
     Debt Ratio:
     <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -124,7 +125,7 @@
     </div>
 
 </div>
-<div class="col">
+<div class="col-md-3 col-sm-12">
 <div class="dropdown text-light">
   EPS:
   <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -139,8 +140,8 @@
   </div>
 </div>
 </div>
-<div class="row mt-4">
-  <div class="col">
+<div class="row ">
+  <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light">
       EBIT:
       <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -154,7 +155,7 @@
         </ul>
       </div>
     </div>
-    <div class="col">
+    <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light">
         Operating EPS:
         <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -168,23 +169,23 @@
           </ul>
         </div>
       </div>
-      <div class="col">
+      <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light">
-          ITR:
+          Paid Capital:
           <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Any
+            {{request.session.filterObj.PAID_CAPITAL}}
           </button>
           <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >High</a></li>
+              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
+              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Low</a></li>
             </ul>
           </div>
       
       </div>
       
-      <div class="col">
+      <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light">
           Quick Ratio:
           <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -202,22 +203,23 @@
 </div>
 </div>
 </div>
+<div class="table-responsive">
     <table class="table table-dark table-hover">
         <thead>
           <tr class="text-info">
-            <th></th>
-            <th>Ticker</th>
-            <th>Company Name</th>
-            <th>Sector</th>
-            <th>Price</th>
-            <th>Country </th>
-            <th>Authorized Capital </th>
-            <th>Issued Shares </th>
-            <th>Paid Capital</th>
+            <th scope="col"></th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Sector</th>
+            <th scope="col">Price</th>
+            <th scope="col">Country </th>
+            <th scope="col">Authorized Capital </th>
+            <th scope="col">Issued Shares </th>
+            <th scope="col">Paid Capital</th>
           </tr>
         </thead>
         <tbody>
-        {% for company in allCompanies %}
+        {% for company in cuurentStocksList  %}
         <tr>
             <td></td>
             <td>{{company.TICKER}}</td>
@@ -235,6 +237,13 @@
         {% endfor %}
         </tbody>
       </table>
+      {% if cuurentStocksList %}
+        {% else %}
+        <p class="text-light ">No Matching Results</p>
+        {% endif %}
+    </div>
+
+  
       
 
 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
         .rounded-circle {
-          border-radius: 50%;
+            border-radius: 50%;
           /* min-width: 100%; */
         }
       </style>
@@ -42,25 +42,22 @@
                 margin-right: 0.5em;
             }
         </style>
-  </head>
-  <body class="bg-dark">
-    <div class="container-fluid mt-2">
+    </head>
+    <body class="bg-dark " >
+    <div class="container-fluid mt-2" >
     <div class="jumbotron jumbotron-fluid bg-dark text-light  ">
         <div class="container ">
             <div class="row">
-                <div class="col-4">
-                    <img class="rounded-circle float-left pt-1" src="{% static 'img/icone3.jpg' %}" alt="My image" width="160" height="160" >
+                <div class="col-sm-6 col-md-3">
+                    <img class="rounded-circle " src="{% static 'img/icone3.jpg' %}" alt="My image" width="150" height="150" >
                 </div>
-                <div class="col-6 pt-3"> 
+                <div class="col-sm-6 col-md-9"> 
                     <h1 class="display-3">TAHLEEL</h1>
                     <p class="lead text-info">Be Your Own Analyst</p>
                 </div>
-                
-                
             </div>
         </div>
-      </div>
-      
+        </div>
     {% block content %}
 
     {% endblock %}

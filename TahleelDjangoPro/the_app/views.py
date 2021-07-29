@@ -1,14 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http import JsonResponse,request
-from .models import client
+from django.http import JsonResponse
+from .models import *
+import json
 
 
 # Create your views here.
-# cur = conn.cursor()
-#     cur.execute(
-#         '''SELECT TICKER, NAME, SECTOR FROM "public"."companies_general"''')
-#     rows = cur.fetchall()
-#     conn.commit()
+
 def returnAllCompanies(Communication_Services_Sector,Consumer_Discretionary_Sector,Consumer_Staples_Sector,
     Energy_Sector,Financials_Sector,Health_Care_Sector,Industrials_Sector,Information_Technology_Sector,Materials_Sector,
     Real_Estate_Sector,Utilities_Sector):
@@ -65,21 +62,134 @@ def allComs():
     Real_Estate_Sector,Utilities_Sector)
     return sortByPrice(allCompanies)
 def main(request):
-    return redirect('/sector/All')
+    filterObj = {
+    'Sector': 'All',
+    'PRICE': 'Any',
+    'DividendYield': 'Any',
+    'MarketCap': 'Any',
+    'Pb': 'Any',
+    'Pe:': 'Any',
+    'CurrentRatio': 'Any',
+    'DebtRatio': 'Any',
+    'Eps': 'Any',
+    'Ebit': 'Any',
+    'OperatingEps': 'Any',
+    'QuickRatio': 'Any'
+    } 
+    request.session['filterObj'] = filterObj
+    return redirect('filter/Sector/catagory/All')
 
-def sector(request,sectorVal):
-    tadawul_db = client["Tadawul_v3"]
-    if sectorVal == "All":
-        all=allComs()
-        context ={"allCompanies": all,
-        "isAll": True
-        }
-        return render(request, 'main.html',context)
+# def sector(request,sectorVal):
+#     tadawul_db = client["Tadawul_v3"]
+#     if sectorVal == "All":
+#         all=allComs()
+#         context ={"allCompanies": all,
+#         "isAll": True
+#         }
+#         return render(request, 'main.html',context)
+#     else:
+#         all=makeSectorList(sectorVal)
+#         context ={"allCompanies": all,
+#         "isAll": False}
+#         return render(request, 'main.html',context)
+
+def filterView(request,filterVal,catVal):
+    filterObj=request.session['filterObj'] 
+    filterObj[filterVal]=catVal
+    request.session['filterObj'] =filterObj
+    cuurentStocksList =filterTheStocks(request.session['filterObj'] )
+    context={
+        'cuurentStocksList':cuurentStocksList
+    }
+    return render(request, 'main.html',context)
+def filterTheStocks(filterObj):
+    # Sector filter
+    if filterObj['Sector']=='All':
+        theCurrentStocks = allComs()
     else:
-        all=makeSectorList(sectorVal)
-        context ={"allCompanies": all,
-        "isAll": False}
-        return render(request, 'main.html',context)
+        theCurrentStocks = makeSectorList(filterObj['Sector'])
+    # Price filter
+    if filterObj['PRICE'] !='Any':
+        theCurrentStocks=filterByPrice(theCurrentStocks,filterObj['PRICE'])
+    # Market Cap filter
+    if filterObj['MarketCap'] !='Any':
+        theCurrentStocks=filterByMarketCap(theCurrentStocks,filterObj['MarketCap'])
+    return theCurrentStocks
+def filterByMarketCap(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='Mega':
+        print("Entered the Mega!!!!!!")
+        for stock in Marketcap.objects.all():
+            # print("is postgresql working?")
+            # print(stock.marketcap)
+            if int(stock.marketcap) >= 200000000000 :
+                newStocksList.append(stock)
+    elif catVal =='Nano':
+        for stock in Marketcap.objects.all():
+            if int(stock.marketcap) <50000000:
+                newStocksList.append(stock)
+    elif catVal =='Large':
+        for stock in Marketcap.objects.all():
+            if int(stock.marketcap) >= 10000000000 and int(stock.marketcap) <= 200000000000 :
+                newStocksList.append(stock)
+    elif catVal =='Mid':
+        for stock in Marketcap.objects.all():
+            if int(stock.marketcap) >= 2000000000 and int(stock.marketcap) <= 10000000000 :
+                newStocksList.append(stock)
+    elif catVal =='Small':
+        for stock in Marketcap.objects.all():
+            if int(stock.marketcap) >= 300000000 and int(stock.marketcap) <= 2000000000 :
+                newStocksList.append(stock)
+    else:
+        print("Entered the Microooo!!!!!!")
+        for stock in Marketcap.objects.all():
+            if int(stock.marketcap) >= 50000000 and int(stock.marketcap) <= 300000000 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker :
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByPrice(theCurrentStocks,catVal):
+    # cuurentStocksList=request.session['cuurentStocksList']
+    newStocksList=[]
+    if catVal =='High':
+        for stock in theCurrentStocks:
+            if int(stock['PRICE']) >100:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in theCurrentStocks:
+            if int(stock['PRICE']) <50:
+                newStocksList.append(stock)
+    else:
+        for stock in theCurrentStocks:
+            if int(stock['PRICE']) >= 50 and int(stock['PRICE']) <=100:
+                newStocksList.append(stock)
+    return newStocksList
+
+def highLowFilters(filterVal,catVal):
+    pass
+# def filterList(filterVal,catVal):
+    # if filterVal == 'Sector':
+    #     if catVal == 'All':
+    #         # request.session['cuurentStocksList'] = allComs()
+    #         filterObj=request.session['filterObj'] 
+    #         filterObj['Sector']='All'
+    #         request.session['filterObj'] =filterObj
+    #     else:
+    #         # request.session['cuurentStocksList'] = makeSectorList(catVal)
+    #         filterObj=request.session['filterObj'] 
+    #         filterObj[filterVal]=catVal
+    #         request.session['filterObj'] =filterObj
+    # elif filterVal == 'Price':
+    #     filterPrice(catVal)
+    # else:
+    #     highLowFilters(filterVal,catVal)
+    
+
+
+
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal
