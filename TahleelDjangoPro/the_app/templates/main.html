@@ -12,9 +12,15 @@
     <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light  ">
           Sector:
-            <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              {{request.session.filterObj.Sector|ReplaceUnderScore}}
-            </button>
+          {% if request.session.filterObj.Sector == 'All' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.Sector|ReplaceUnderScore}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.Sector|ReplaceUnderScore}}
+        </button>
+        {% endif %}
             <ul class="dropdown-menu bg-dark text-info" >
                 <li><a href="/filter/Sector/catagory/All" class="dropdown-item  text-info" >All</a></li>
                 <li><a href="/filter/Sector/catagory/Communication_Services" class="dropdown-item text-info">Communication Services</a></li>
@@ -34,9 +40,15 @@
     <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light ">
         Market Cap:
-          <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if request.session.filterObj.MarketCap == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             {{request.session.filterObj.MarketCap}}
           </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.MarketCap}}
+        </button>
+        {% endif %}
           <ul class="dropdown-menu bg-dark text-info" aria-labelledby="dropdownMenuButton1">
               <li><a href="/filter/MarketCap/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
               <li><a href="/filter/MarketCap/catagory/Mega" class="dropdown-item  text-info" >Mega ($200bln and more)</a></li>
@@ -52,9 +64,15 @@
   <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light ">
       P/B:
-      <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        {{request.session.filterObj.Pb}}
-      </button>
+      {% if request.session.filterObj.Pb == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.Pb}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.Pb}}
+        </button>
+        {% endif %}
       <ul class="dropdown-menu bg-dark text-infot" aria-labelledby="dropdownMenuButton1">
           <li><a href="/filter/Pb/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
           <li><a href="/filter/Pb/catagory/High" class="dropdown-item  text-info" >High (above 5)</a></li>
@@ -67,9 +85,15 @@
 <div class="col-md-3 col-sm-12">
   <div class="dropdown text-light ">
     P/E:
-    <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      {{request.session.filterObj.Pe}}
-    </button>
+    {% if request.session.filterObj.Pe == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.Pe}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.Pe}}
+        </button>
+        {% endif %}
     <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
         <li><a href="/filter/Pe/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
         <li><a href="/filter/Pe/catagory/High" class="dropdown-item  text-info" >High (above 50)</a></li>
@@ -84,9 +108,15 @@
   <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light">
         Current Ratio:
-        <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if request.session.filterObj.CurrentRatio == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.CurrentRatio}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{request.session.filterObj.CurrentRatio}}
         </button>
+        {% endif %}
         <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
             <li><a href="/filter/CurrentRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
             <li><a href="/filter/CurrentRatio/catagory/High" class="dropdown-item  text-info" >High (above 3)</a></li>
@@ -98,9 +128,15 @@
   <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light">
       Price:
-      <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        {{request.session.filterObj.PRICE}}
-      </button>
+      {% if request.session.filterObj.PRICE == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.PRICE}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.PRICE}}
+        </button>
+        {% endif %}
       <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
           <li><a href="/filter/PRICE/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
           <li><a href="/filter/PRICE/catagory/High" class="dropdown-item  text-info" >High (above 100)</a></li>
@@ -113,9 +149,15 @@
 <div class="col-md-3 col-sm-12">
   <div class="dropdown text-light">
     Debt Ratio:
-    <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      {{request.session.filterObj.DebtRatio}}
-    </button>
+    {% if request.session.filterObj.DebtRatio == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.DebtRatio}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.DebtRatio}}
+        </button>
+        {% endif %}
     <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
         <li><a href="/filter/DebtRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
         <li><a href="/filter/DebtRatio/catagory/High" class="dropdown-item  text-info" >High (above 50)</a></li>
@@ -128,9 +170,15 @@
 <div class="col-md-3 col-sm-12">
 <div class="dropdown text-light">
   EPS:
-  <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    {{request.session.filterObj.Eps}}
-  </button>
+  {% if request.session.filterObj.Eps == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.Eps}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.Eps}}
+        </button>
+        {% endif %}
   <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
       <li><a href="/filter/Eps/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
       <li><a href="/filter/Eps/catagory/High" class="dropdown-item  text-info" >High (above 2)</a></li>
@@ -144,9 +192,15 @@
   <div class="col-md-3 col-sm-12">
     <div class="dropdown text-light">
       EBIT:
-      <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        {{request.session.filterObj.Ebit|ReplaceUnderScore}}
-      </button>
+      {% if request.session.filterObj.Ebit == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.Ebit|ReplaceUnderScore}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.Ebit|ReplaceUnderScore}}
+        </button>
+        {% endif %}
       <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
           <li><a href="/filter/Ebit/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
           <li><a href="/filter/Ebit/catagory/Very_High" class="dropdown-item  text-info" >Very High ( above 5bln)</a></li>
@@ -160,9 +214,15 @@
     <div class="col-md-3 col-sm-12">
       <div class="dropdown text-light">
         Operating EPS:
-        <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if request.session.filterObj.OperatingEps == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{request.session.filterObj.OperatingEps}}
+          </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{request.session.filterObj.OperatingEps}}
         </button>
+        {% endif %}
         <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
             <li><a href="/filter/OperatingEps/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
             <li><a href="/filter/OperatingEps/catagory/High" class="dropdown-item  text-info" >High (above 2)</a></li>
@@ -174,9 +234,15 @@
       <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light">
           Dividend Yield:
-          <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {% if request.session.filterObj.DividendYield == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             {{request.session.filterObj.DividendYield|ReplaceUnderScore}}
           </button>
+        {% else %}
+        <button class="btn btn-sm  btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.DividendYield|ReplaceUnderScore}}
+        </button>
+        {% endif %}
           <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
               <li><a href="/filter/DividendYield/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
               <li><a href="/filter/DividendYield/catagory/None" class="dropdown-item  text-info" >None (0%)</a></li>
@@ -191,9 +257,15 @@
       <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light">
           Quick Ratio:
-          <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {% if request.session.filterObj.QuickRatio == 'Any' %}
+          <button class="btn btn-sm btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             {{request.session.filterObj.QuickRatio}}
           </button>
+        {% else %}
+        <button class="btn btn-sm btn-dark dropdown-toggle text-info btn-outline-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{request.session.filterObj.QuickRatio}}
+        </button>
+        {% endif %}
           <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
             <li><a href="/filter/QuickRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
             <li><a href="/filter/QuickRatio/catagory/High" class="dropdown-item  text-info" >High (above 3)</a></li>
@@ -207,11 +279,11 @@
 </div>
 </div>
 <div class="table-responsive">
-    <table class="table table-dark table-hover">
+    <table class="table table-dark table-hover ">
         <thead>
           <tr class="text-info">
-            <th scope="col"></th>
-            <th scope="col">Ticker</th>
+            <th scope="col">#</th>
+            <th scope="col" class="sticky-col first-col">Ticker</th>
             <th scope="col">Company Name</th>
             <th scope="col">Sector</th>
             <th scope="col">Price</th>
@@ -225,7 +297,7 @@
         {% for company in cuurentStocksList  %}
         <tr>
             <td></td>
-            <td>{{company.TICKER}}</td>
+            <td class="sticky-col first-col">{{company.TICKER}}</td>
             <td>{{company.NAME}}</td>
             <td>
               {{ company.SECTOR|ReplaceUnderScore }}
