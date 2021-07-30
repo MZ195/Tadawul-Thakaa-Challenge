@@ -65,15 +65,15 @@ def main(request):
     filterObj = {
     'Sector': 'All',
     'PRICE': 'Any',
-    'DividendYield': 'Any',
     'MarketCap': 'Any',
     'Pb': 'Any',
-    'Pe:': 'Any',
+    'Pe': 'Any',
     'CurrentRatio': 'Any',
     'DebtRatio': 'Any',
     'Eps': 'Any',
     'Ebit': 'Any',
     'OperatingEps': 'Any',
+    'DividendYield': 'Any',
     'QuickRatio': 'Any'
     } 
     request.session['filterObj'] = filterObj
@@ -92,7 +92,17 @@ def main(request):
 #         context ={"allCompanies": all,
 #         "isAll": False}
 #         return render(request, 'main.html',context)
-
+def isTheTickerThere(ticker,myList):
+    for stock in myList:
+        if stock['TICKER'] == ticker:
+            return True
+    return False
+def removeDuplicates(cuurentStocksList):
+    newStocksList = []
+    for stock in cuurentStocksList:
+        if not isTheTickerThere(stock['TICKER'],newStocksList):
+            newStocksList.append(stock)
+    return newStocksList
 def filterView(request,filterVal,catVal):
     filterObj=request.session['filterObj'] 
     filterObj[filterVal]=catVal
@@ -114,15 +124,231 @@ def filterTheStocks(filterObj):
     # Market Cap filter
     if filterObj['MarketCap'] !='Any':
         theCurrentStocks=filterByMarketCap(theCurrentStocks,filterObj['MarketCap'])
+    # P/B filter
+    if filterObj['Pb'] !='Any':
+        theCurrentStocks=filterByPb(theCurrentStocks,filterObj['Pb'])
+    # P/E filter
+    if filterObj['Pe'] !='Any':
+        theCurrentStocks=filterByPe(theCurrentStocks,filterObj['Pe'])
+    # Current Ratio filter
+    if filterObj['CurrentRatio'] !='Any':
+        theCurrentStocks=filterByCurrentRatio(theCurrentStocks,filterObj['CurrentRatio'])
+    # Debt Ratio filter
+    if filterObj['DebtRatio'] !='Any':
+        theCurrentStocks=filterByDebtRatio(theCurrentStocks,filterObj['DebtRatio'])
+    # Eps filter
+    if filterObj['Eps'] !='Any':
+        theCurrentStocks=filterByEps(theCurrentStocks,filterObj['Eps'])
+    # Ebit filter
+    if filterObj['Ebit'] !='Any':
+        theCurrentStocks=filterByEbit(theCurrentStocks,filterObj['Ebit'])
+    # Operating Eps filter
+    if filterObj['OperatingEps'] !='Any':
+        theCurrentStocks=filterByOperatingEps(theCurrentStocks,filterObj['OperatingEps'])
+    # Dividend Yield filter
+    if filterObj['DividendYield'] !='Any':
+        theCurrentStocks=filterByDividendYield(theCurrentStocks,filterObj['DividendYield'])
+    # Quick Ratio filter
+    if filterObj['QuickRatio'] !='Any':
+        theCurrentStocks=filterByQuickRatio(theCurrentStocks,filterObj['QuickRatio'])
     return theCurrentStocks
+def filterByQuickRatio(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in QuickRatio.objects.all():
+            if float(stock.value) > 3.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in QuickRatio.objects.all():
+            if float(stock.value) < 0.5:
+                newStocksList.append(stock)
+    else:
+        for stock in QuickRatio.objects.all():
+            if float(stock.value) >= 0.5 and float(stock.value) <= 3.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByDividendYield(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='Positive':
+        for stock in DividendYield.objects.all():
+            if float(stock.value) > 0:
+                newStocksList.append(stock)
+    elif catVal =='High':
+        for stock in DividendYield.objects.all():
+            if float(stock.value) > 0.05:
+                newStocksList.append(stock)
+    elif catVal =='Very_High':
+        for stock in DividendYield.objects.all():
+            if float(stock.value) > 0.1:
+                newStocksList.append(stock)
+    else:
+        for stock in DividendYield.objects.all():
+            if float(stock.value) == 0:
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByOperatingEps(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in OperatingEps.objects.all():
+            if float(stock.value) > 2.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in OperatingEps.objects.all():
+            if float(stock.value) < 0.00:
+                newStocksList.append(stock)
+    else:
+        for stock in OperatingEps.objects.all():
+            if float(stock.value) >= 0.00 and float(stock.value) <= 2.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByEbit(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='Very_High':
+        for stock in Ebit.objects.all():
+            if int(stock.value) > 5000000000:
+                newStocksList.append(stock)
+    elif catVal =='High':
+        for stock in Ebit.objects.all():
+            if int(stock.value) >= 10000000 and int(stock.value) <= 5000000000 :
+                newStocksList.append(stock)
+    elif catVal =='Acceptable':
+        for stock in Ebit.objects.all():
+            if int(stock.value) >= 1000000 and int(stock.value) <= 10000000 :
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in Ebit.objects.all():
+            if int(stock.value) >= -10000000 and int(stock.value) <= 0 :
+                newStocksList.append(stock)
+    else:
+        for stock in Ebit.objects.all():
+            if int(stock.value) < -10000000 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByEps(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in Eps.objects.all():
+            if float(stock.value) > 2.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in Eps.objects.all():
+            if float(stock.value) < 0.00:
+                newStocksList.append(stock)
+    else:
+        for stock in Eps.objects.all():
+            if float(stock.value) >= 0.00 and float(stock.value) <= 2.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByDebtRatio(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in DebtRatio.objects.all():
+            if float(stock.value) > 50.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in DebtRatio.objects.all():
+            if float(stock.value) < 10.00:
+                newStocksList.append(stock)
+    else:
+        for stock in DebtRatio.objects.all():
+            if float(stock.value) >= 10.00 and float(stock.value) <= 50.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByCurrentRatio(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in CurrentRatio.objects.all():
+            if float(stock.value) > 3.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in CurrentRatio.objects.all():
+            if float(stock.value) < 1.00:
+                newStocksList.append(stock)
+    else:
+        for stock in CurrentRatio.objects.all():
+            if float(stock.value) >= 1.00 and float(stock.value) <= 3.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByPe(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in Pe.objects.all():
+            if float(stock.value) > 50.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in Pe.objects.all():
+            if float(stock.value) < 15.00:
+                newStocksList.append(stock)
+    else:
+        for stock in Pe.objects.all():
+            if float(stock.value) >= 15.00 and float(stock.value) <= 50.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
+def filterByPb(theCurrentStocks,catVal):
+    newStocksList=[]
+    readyStocksList=[]
+    if catVal =='High':
+        for stock in Pb.objects.all():
+            if float(stock.value) > 5.00:
+                newStocksList.append(stock)
+    elif catVal =='Low':
+        for stock in Pb.objects.all():
+            if float(stock.value) < 1.00:
+                newStocksList.append(stock)
+    else:
+        for stock in Pb.objects.all():
+            if float(stock.value) >= 1.00 and float(stock.value) <= 5.00 :
+                newStocksList.append(stock)
+    for stock in theCurrentStocks:
+        for x in newStocksList:
+            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+                readyStocksList.append(stock)
+    return readyStocksList
 def filterByMarketCap(theCurrentStocks,catVal):
     newStocksList=[]
     readyStocksList=[]
     if catVal =='Mega':
-        print("Entered the Mega!!!!!!")
         for stock in Marketcap.objects.all():
-            # print("is postgresql working?")
-            # print(stock.marketcap)
             if int(stock.marketcap) >= 200000000000 :
                 newStocksList.append(stock)
     elif catVal =='Nano':
@@ -152,7 +378,6 @@ def filterByMarketCap(theCurrentStocks,catVal):
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByPrice(theCurrentStocks,catVal):
-    # cuurentStocksList=request.session['cuurentStocksList']
     newStocksList=[]
     if catVal =='High':
         for stock in theCurrentStocks:

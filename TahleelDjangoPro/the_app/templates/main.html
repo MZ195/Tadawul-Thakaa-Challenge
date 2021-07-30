@@ -40,11 +40,11 @@
           <ul class="dropdown-menu bg-dark text-info" aria-labelledby="dropdownMenuButton1">
               <li><a href="/filter/MarketCap/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
               <li><a href="/filter/MarketCap/catagory/Mega" class="dropdown-item  text-info" >Mega ($200bln and more)</a></li>
-              <li><a href="/filter/MarketCap/catagory/Nano" class="dropdown-item  text-info" >Nano (under $50mln)</a></li>
               <li><a href="/filter/MarketCap/catagory/Large" class="dropdown-item  text-info" >Large ($10bln to $200bln)</a></li>
               <li><a href="/filter/MarketCap/catagory/Mid" class="dropdown-item  text-info" >Mid ($2bln to $10bln)</a></li>
               <li><a href="/filter/MarketCap/catagory/Small" class="dropdown-item  text-info" >Small ($300mln to $2bln)</a></li>
               <li><a href="/filter/MarketCap/catagory/Micro" class="dropdown-item  text-info" >Micro ($50mln to $300mln))</a></li>
+              <li><a href="/filter/MarketCap/catagory/Nano" class="dropdown-item  text-info" >Nano (under $50mln)</a></li>
           </ul>
         </div>
 
@@ -53,13 +53,13 @@
     <div class="dropdown text-light ">
       P/B:
       <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Any
+        {{request.session.filterObj.Pb}}
       </button>
       <ul class="dropdown-menu bg-dark text-infot" aria-labelledby="dropdownMenuButton1">
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          <li><a href="/filter/Pb/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/Pb/catagory/High" class="dropdown-item  text-info" >High (above 5)</a></li>
+          <li><a href="/filter/Pb/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (1-5)</a></li>
+          <li><a href="/filter/Pb/catagory/Low" class="dropdown-item  text-info" >Low (under 1)</a></li>
         </ul>
       </div>
 
@@ -68,13 +68,13 @@
   <div class="dropdown text-light ">
     P/E:
     <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Any
+      {{request.session.filterObj.Pe}}
     </button>
     <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+        <li><a href="/filter/Pe/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+        <li><a href="/filter/Pe/catagory/High" class="dropdown-item  text-info" >High (above 50)</a></li>
+        <li><a href="/filter/Pe/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (15-50)</a></li>
+        <li><a href="/filter/Pe/catagory/Low" class="dropdown-item  text-info" >Low (under 15)</a></li>
       </ul>
     </div>
 </div>
@@ -85,13 +85,13 @@
       <div class="dropdown text-light">
         Current Ratio:
         <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Any
+          {{request.session.filterObj.CurrentRatio}}
         </button>
         <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+            <li><a href="/filter/CurrentRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+            <li><a href="/filter/CurrentRatio/catagory/High" class="dropdown-item  text-info" >High (above 3)</a></li>
+            <li><a href="/filter/CurrentRatio/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (1-3)</a></li>
+            <li><a href="/filter/CurrentRatio/catagory/Low" class="dropdown-item  text-info" >Low (under 1)</a></li>
           </ul>
         </div>
   </div>
@@ -103,9 +103,9 @@
       </button>
       <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
           <li><a href="/filter/PRICE/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
-          <li><a href="/filter/PRICE/catagory/High" class="dropdown-item  text-info" >High (>100)</a></li>
+          <li><a href="/filter/PRICE/catagory/High" class="dropdown-item  text-info" >High (above 100)</a></li>
           <li><a href="/filter/PRICE/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (50-100)</a></li>
-          <li><a href="/filter/PRICE/catagory/Low" class="dropdown-item  text-info" >Low (&lt50)</a></li>
+          <li><a href="/filter/PRICE/catagory/Low" class="dropdown-item  text-info" >Low (under 50)</a></li>
         </ul>
       </div>
 
@@ -114,13 +114,13 @@
   <div class="dropdown text-light">
     Debt Ratio:
     <button class="btn btn-dark dropdown-toggle text-info " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      Any
+      {{request.session.filterObj.DebtRatio}}
     </button>
     <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-        <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+        <li><a href="/filter/DebtRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+        <li><a href="/filter/DebtRatio/catagory/High" class="dropdown-item  text-info" >High (above 50)</a></li>
+        <li><a href="/filter/DebtRatio/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (10-50)</a></li>
+        <li><a href="/filter/DebtRatio/catagory/Low" class="dropdown-item  text-info" >Low (under 10)</a></li>
       </ul>
     </div>
 
@@ -129,13 +129,13 @@
 <div class="dropdown text-light">
   EPS:
   <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Any
+    {{request.session.filterObj.Eps}}
   </button>
   <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-      <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+      <li><a href="/filter/Eps/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+      <li><a href="/filter/Eps/catagory/High" class="dropdown-item  text-info" >High (above 2)</a></li>
+      <li><a href="/filter/Eps/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (0-2)</a></li>
+      <li><a href="/filter/Eps/catagory/Low" class="dropdown-item  text-info" >Low (under 0)</a></li>
     </ul>
   </div>
 </div>
@@ -145,13 +145,15 @@
     <div class="dropdown text-light">
       EBIT:
       <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Any
+        {{request.session.filterObj.Ebit|ReplaceUnderScore}}
       </button>
       <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-          <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+          <li><a href="/filter/Ebit/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+          <li><a href="/filter/Ebit/catagory/Very_High" class="dropdown-item  text-info" >Very High ( above 5bln)</a></li>
+          <li><a href="/filter/Ebit/catagory/High" class="dropdown-item  text-info" >High (10mln-5bln)</a></li>
+          <li><a href="/filter/Ebit/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (1mln-10mln)</a></li>
+          <li><a href="/filter/Ebit/catagory/Low" class="dropdown-item  text-info" >Low (-10mln-0)</a></li>
+          <li><a href="/filter/Ebit/catagory/Very_Low" class="dropdown-item  text-info" >Very Low (under -10mln)</a></li>
         </ul>
       </div>
     </div>
@@ -159,27 +161,28 @@
       <div class="dropdown text-light">
         Operating EPS:
         <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Any
+          {{request.session.filterObj.OperatingEps}}
         </button>
         <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-            <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+            <li><a href="/filter/OperatingEps/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+            <li><a href="/filter/OperatingEps/catagory/High" class="dropdown-item  text-info" >High (above 2)</a></li>
+            <li><a href="/filter/OperatingEps/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (0-2)</a></li>
+            <li><a href="/filter/OperatingEps/catagory/Low" class="dropdown-item  text-info" >Low (under 0)</a></li>
           </ul>
         </div>
       </div>
       <div class="col-md-3 col-sm-12">
         <div class="dropdown text-light">
-          Paid Capital:
+          Dividend Yield:
           <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            {{request.session.filterObj.PAID_CAPITAL}}
+            {{request.session.filterObj.DividendYield|ReplaceUnderScore}}
           </button>
           <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Any</a></li>
-              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >High</a></li>
-              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-              <li><a href="/filter/PAID_CAPITAL/catagory" class="dropdown-item  text-info" >Low</a></li>
+              <li><a href="/filter/DividendYield/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+              <li><a href="/filter/DividendYield/catagory/None" class="dropdown-item  text-info" >None (0%)</a></li>
+              <li><a href="/filter/DividendYield/catagory/Positive" class="dropdown-item  text-info" >Positive (above 0%)</a></li>
+              <li><a href="/filter/DividendYield/catagory/High" class="dropdown-item  text-info" >High (above 5%)</a></li>
+              <li><a href="/filter/DividendYield/catagory/Very_High" class="dropdown-item  text-info" >Very High (above 10%)</a></li>
             </ul>
           </div>
       
@@ -189,13 +192,13 @@
         <div class="dropdown text-light">
           Quick Ratio:
           <button class="btn btn-dark dropdown-toggle text-info" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Any
+            {{request.session.filterObj.QuickRatio}}
           </button>
           <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton1">
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Any</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >High</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Acceptable</a></li>
-              <li><a href="/filter/Market_Cap/catagory" class="dropdown-item  text-info" >Low</a></li>
+            <li><a href="/filter/QuickRatio/catagory/Any" class="dropdown-item  text-info" >Any</a></li>
+            <li><a href="/filter/QuickRatio/catagory/High" class="dropdown-item  text-info" >High (above 3)</a></li>
+            <li><a href="/filter/QuickRatio/catagory/Acceptable" class="dropdown-item  text-info" >Acceptable (0.5-3)</a></li>
+            <li><a href="/filter/QuickRatio/catagory/Low" class="dropdown-item  text-info" >Low (under 0.5)</a></li>
             </ul>
           </div>
       
@@ -239,7 +242,9 @@
       </table>
       {% if cuurentStocksList %}
         {% else %}
-        <p class="text-light ">No Matching Results</p>
+        <div class="d-flex justify-content-center">
+        <p class="text-light ">No Results</p>
+        </div>
         {% endif %}
     </div>
 
