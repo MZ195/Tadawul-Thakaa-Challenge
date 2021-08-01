@@ -295,10 +295,10 @@
         </thead>
         <tbody>
         {% for company in cuurentStocksList  %}
-        <tr>
+        <tr onclick='window.location="/stock/ticker/{{company.TICKER}}/page"'>
             <td></td>
             <td class="sticky-col first-col">{{company.TICKER}}</td>
-            <td>{{company.NAME}}</td>
+            <td><a href="/stock/ticker/{{company.TICKER}}/page" class=" text-light" >{{company.NAME}}</a></td>
             <td>
               {{ company.SECTOR|ReplaceUnderScore }}
               

@@ -55,6 +55,10 @@
             max-width: 100px;
             left: 0px;
             }
+            a {
+        text-decoration: none; /* no underline */
+        }
+            
         </style>
     </head>
     <body class="bg-dark " >
@@ -67,14 +71,26 @@
         
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-                  <li><a href="#" class="nav-link px-2 text-info">Screener</a></li>
+                    {% if isScreener %}
+                  <li><a href="/" class="nav-link px-2 text-info">Screener</a></li>
+                  {% else %}
+                  <li><a href="/" class="nav-link px-2 text-white">Screener</a></li>
+                  {% endif %}
+                  {% if isStock %}
+                  <li><a href="#" class="nav-link px-2 text-info">Stock</a></li>
+                  {% else %}
+                  <li><a href="#" class="nav-link px-2 text-white">Stock</a></li>
+                  {% endif %}
                   <li><a href="#" class="nav-link px-2 text-white">Portfolios</a></li>
                   <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                   <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
         
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                  <input type="search" class="form-control form-control-dark" placeholder="Search Tickers.." aria-label="Search">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3  d-flex" action="/search/ticker" method="post">
+                            {% csrf_token %}
+                            
+                    <input type="number" name="search" class="form-control form-control-dark me-2" placeholder="Search Tickers.." aria-label="Search">
+                    <!-- <button type="submit"  class="btn  btn-info  "  >GO!</button> -->
                 </form>
         
                 <div class="text-end">

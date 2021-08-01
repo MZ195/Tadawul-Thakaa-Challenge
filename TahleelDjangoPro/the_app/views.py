@@ -109,7 +109,8 @@ def filterView(request,filterVal,catVal):
     request.session['filterObj'] =filterObj
     cuurentStocksList =filterTheStocks(request.session['filterObj'] )
     context={
-        'cuurentStocksList':cuurentStocksList
+        'cuurentStocksList':cuurentStocksList,
+        'isScreener':True,
     }
     return render(request, 'main.html',context)
 def filterTheStocks(filterObj):
@@ -393,28 +394,85 @@ def filterByPrice(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     return newStocksList
 
-def highLowFilters(filterVal,catVal):
-    pass
-# def filterList(filterVal,catVal):
-    # if filterVal == 'Sector':
-    #     if catVal == 'All':
-    #         # request.session['cuurentStocksList'] = allComs()
-    #         filterObj=request.session['filterObj'] 
-    #         filterObj['Sector']='All'
-    #         request.session['filterObj'] =filterObj
-    #     else:
-    #         # request.session['cuurentStocksList'] = makeSectorList(catVal)
-    #         filterObj=request.session['filterObj'] 
-    #         filterObj[filterVal]=catVal
-    #         request.session['filterObj'] =filterObj
-    # elif filterVal == 'Price':
-    #     filterPrice(catVal)
-    # else:
-    #     highLowFilters(filterVal,catVal)
-    
+def findComByTicker(Ticker):
+    allS=allComs()
+    for c in allS:
+        if int(c['TICKER']) == Ticker:
+            return c
+    return False
 
+def isItCorrectSearch(searchData):
+    if int(searchData) <= 9999:
+        return True
+    else:
+        return False
+def searchT(request):
+    if request.method =='POST':
+        if isItCorrectSearch(request.POST['search']):
+            if findComByTicker(int(request.POST['search'])):
+                result=findComByTicker(int(request.POST['search']))
+                context ={
+                    'correctSearch': True,
+                    'thereIsResult':True,
+                    'result':result,
+                }
+                return render(request, 'searchResults.html',context)
+            else:
+                context ={
+                    'correctSearch': True,
+                    'thereIsResult':False
+                }
+                return render(request, 'searchResults.html',context)
+        else:
+            context ={
+                'correctSearch': False,
+                'thereIsResult':False
+            }
+            return render(request, 'searchResults.html',context)
+def getMC(sectorVal,tickerVal):
+    sector = sectorVal
+    ticker = tickerVal
+    tadawul_db = client["Tadawul_v3"]
+    mycol = tadawul_db[sector]
+    res = mycol.find_one({"TICKER": int(ticker)})
 
+    price = float(res["PRICE"])
+    shares = int(res["ISSUED_SHARES"])
+    result= (price * shares)
 
+    return result
+def getInvestments(tickerVal):
+    # ALLc=allComs()
+    result={}
+    for c in allComs():
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['BALANCE_SHEET']['ANNUALLY']['2020_12_31']['Investments']
+    return result
+def getDepreciation(tickerVal):
+    ALLc=allComs()
+    result={}
+    for c in ALLc:
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['STATEMENT_OF_INCOME']['ANNUALLY']['2020_12_31']['Depreciation']
+    return result
+def getNetIncome(tickerVal):
+    ALLc=allComs()
+    result={}
+    for c in ALLc:
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['CASH_FLOW']['ANNUALLY']['2020_12_31']['Net_Income']
+    return result
+def stockPage(request,tickerVal):
+    stock=findComByTicker(int(tickerVal))
+    context={
+        'stock':stock,
+        'isStock':True,
+        'MC':getMC(stock['SECTOR'],tickerVal),
+        'Investments':getInvestments(tickerVal),
+        'Depreciation':getDepreciation(tickerVal),
+        'NetIncome':getNetIncome(tickerVal)
+    }
+    return render(request, 'stockPage.html',context)
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal

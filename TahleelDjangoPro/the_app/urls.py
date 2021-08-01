@@ -4,7 +4,8 @@ from .views import *
 urlpatterns= [
     path('', views.main),
     path('filter/<str:filterVal>/catagory/<str:catVal>', views.filterView),
-    # path('sector/<str:sectorVal>', views.sector),
+    path('search/ticker', views.searchT),
+    path('stock/ticker/<str:tickerVal>/page', views.stockPage),
     path('others/MarketCap/sector/<str:sectorVal>/ticker/<str:tickerVal>', views.get_market_cap),
     path('others/EPS/sector/<str:sectorVal>/ticker/<str:tickerVal>', views.get_EPS),
     path('others/Operating_EPS/sector/<str:sectorVal>/ticker/<str:tickerVal>', views.get_Operating_EPS),

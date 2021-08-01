@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load customizedTags %}
+{% load static %}
+
+
+
+<div class="card m-3  bg-dark text-light">
+    {% if stock.SECTOR|ReplaceUnderScore == 'Communication Services' %}
+    <img src="{% static 'img/CommunicationServices.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Consumer Discretionary' %}
+    <img src="{% static 'img/ConsumerDiscretionary.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Consumer Staples' %}
+    <img src="{% static 'img/ConsumerStaples.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Energy' %}
+    <img src="{% static 'img/Energy.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Financials' %}
+    <img src="{% static 'img/Financials.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Health Care' %}
+    <img src="{% static 'img/Health.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Industrials' %}
+    <img src="{% static 'img/Industrials.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Information Technology' %}
+    <img src="{% static 'img/Technology.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Materials' %}
+    <img src="{% static 'img/Materials.jpg' %}" class="card-img-top" width="200" height="300">
+    {% elif stock.SECTOR|ReplaceUnderScore == 'Real Estate' %}
+    <img src="{% static 'img/RealEstate.jpg' %}" class="card-img-top" width="200" height="300">
+    {% else %}
+    <img src="{% static 'img/Utilities.jpg' %}" class="card-img-top" width="200" height="300">
+    {% endif %}
+    <div class="card-img-overlay p-4">
+        <div class="row ">
+            <div class="col-sm-6">
+                <h5 class="card-title">{{stock.NAME}}</h5>
+                <button type="button" class="btn btn-outline-info m-2">Add To Portfolio</button>
+            </div>
+            <div class="col-sm-6 ">
+                <div class="row d-flex">
+                    <div class="col-4">
+                        <h5 class="card-text  text-light">Price</h5>
+                        <p class="card-text ">{{stock.PRICE}} (SAR)</p>
+                    </div>
+                    <div class="col-4">
+                        <h5 class="card-text  text-light">Ticker</h5>
+                        <p class="card-text ">{{stock.TICKER}} </p>
+                    </div>
+                    <div class="col-4">
+                        <h5 class="card-text text-light">Country</h5>
+                        <p class="card-text ">Saudi Araiba</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+      <div class="row mt-5">
+          <div class="col-sm-4">
+            <h5 class="card-text text-light">Market Cap</h5>
+            <p class="card-text ">{{MC}} (SAR)</p>
+          </div>
+          <div class="col-sm-4">
+            <h5 class="card-text text-light">Last updated</h5>
+            <p class="card-text  ">2021/12/31 </p>
+          </div>
+          <div class="col-sm-4">
+            <h5 class="card-text text-light">Data Source</h5>
+            <p class="card-text ">Tadawul</p>
+          </div>
+      </div>
+    </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h5 class="card-title text-info">{{stock.SECTOR|ReplaceUnderScore}} Summary</h5>
+                    {% if stock.SECTOR|ReplaceUnderScore == 'Communication Services' %}
+                    <p class="card-text">The telecommunications sector consists of companies that transmit data in words, voice, audio, or video across the globe.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Consumer Discretionary' %}
+                    <p class="card-text">The Consumer Discretionary Sector encompasses those industries that tend to be the most sensitive to economic cycles.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Consumer Staples' %}
+                    <p class="card-text">The Consumer Staples Sector comprises companies whose businesses are less sensitive to economic cycles.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Energy' %}
+                    <p class="card-text">The energy sector or industry includes companies involved in the exploration and development of oil or gas reserves, oil and gas drilling, and refining.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Financials' %}
+                    <p class="card-text">The financial sector is a section of the economy made up of firms and institutions that provide financial services to commercial and retail customers.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Health Care' %}
+                    <p class="card-text">The healthcare sector consists of businesses that provide medical services, manufacture medical equipment or drugs, provide medical insurance, or otherwise facilitate the provision of healthcare to patients.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Industrials' %}
+                    <p class="card-text">The industrial goods sector includes stocks of companies that mainly produce capital goods used in manufacturing, resource extraction, and construction.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Information Technology' %}
+                    <p class="card-text">The information technology (IT) sector is comprised of companies that produce software, hardware or semiconductor equipment, or companies that provide internet or related services.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Materials' %}
+                    <p class="card-text">The materials sector includes companies engaged in the discovery, development, and processing of raw materials, which are used across a broad range of sectors and industries.</p>
+                    {% elif stock.SECTOR|ReplaceUnderScore == 'Real Estate' %}
+                    <p class="card-text">Real estate is the land along with any permanent improvements attached to the land, whether natural or man-made—including water, trees, minerals, buildings, homes, fences, and bridges. </p>
+                    {% else %}
+                    <p class="card-text">The utilities sector refers to a category of companies that provide basic amenities, such as water, sewage services, electricity, dams, and natural gas.</p>
+                    {% endif %}
+                </div>
+                <div class="col-sm-5">
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <h6 class="card-text text-info ">Investments</h6>
+                            <p class="card-text fs-6">{{Investments}} </p>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="card-text text-info">Depreciation</h6>
+                            <p class="card-text fs-6">{{Depreciation}} </p>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="card-text text-info">NetIncome</h6>
+                            <p class="card-text fs-6">{{NetIncome}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+
+{% endblock %}
