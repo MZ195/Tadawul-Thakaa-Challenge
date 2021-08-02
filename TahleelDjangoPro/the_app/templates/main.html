@@ -295,19 +295,19 @@
         </thead>
         <tbody>
         {% for company in cuurentStocksList  %}
-        <tr onclick='window.location="/stock/ticker/{{company.TICKER}}/page"'>
+        <tr onclick='window.location="/stock/sector/{{company.sector}}/ticker/{{company.ticker}}/page"'>
             <td></td>
-            <td class="sticky-col first-col">{{company.TICKER}}</td>
-            <td><a href="/stock/ticker/{{company.TICKER}}/page" class=" text-light" >{{company.NAME}}</a></td>
+            <td class="sticky-col first-col">{{company.ticker}}</td>
+            <td><a href="/stock/sector/{{company.sector}}/ticker/{{company.ticker}}/page" class=" text-light" >{{company.name}}</a></td>
             <td>
-              {{ company.SECTOR|ReplaceUnderScore }}
+              {{ company.sector|ReplaceUnderScore }}
               
             </td>
-            <td>{{company.PRICE}}</td>
+            <td>{{company.price}}</td>
             <td>KSA</td>
-            <td>{{company.AUTHORIZED_CAPITAL}}</td>
-            <td>{{company.ISSUED_SHARES}}</td>
-            <td>{{company.PAID_CAPITAL}}</td>
+            <td>{{company.authorized_capital}}</td>
+            <td>{{company.issued_shares}}</td>
+            <td>{{company.paid_capital}}</td>
           </tr>
         {% endfor %}
         </tbody>

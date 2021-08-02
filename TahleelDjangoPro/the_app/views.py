@@ -4,119 +4,22 @@ from .models import *
 import json
 
 
-# Create your views here.
-
-def returnAllCompanies(Communication_Services_Sector,Consumer_Discretionary_Sector,Consumer_Staples_Sector,
-    Energy_Sector,Financials_Sector,Health_Care_Sector,Industrials_Sector,Information_Technology_Sector,Materials_Sector,
-    Real_Estate_Sector,Utilities_Sector):
-    allCompanies=[]
-    for com in Communication_Services_Sector:
-        allCompanies.append(com)
-    for com in Consumer_Discretionary_Sector:
-        allCompanies.append(com)
-    for com in Consumer_Staples_Sector:
-        allCompanies.append(com)
-    for com in Energy_Sector:
-        allCompanies.append(com)
-    for com in Financials_Sector:
-        allCompanies.append(com)
-    for com in Health_Care_Sector:
-        allCompanies.append(com)
-    for com in Industrials_Sector:
-        allCompanies.append(com)
-    for com in Information_Technology_Sector:
-        allCompanies.append(com)
-    for com in Materials_Sector:
-        allCompanies.append(com)
-    for com in Real_Estate_Sector:
-        allCompanies.append(com)
-    for com in Utilities_Sector:
-        allCompanies.append(com)
-    return allCompanies
-def sortByPrice(allCompanies):
-    n = len(allCompanies)
-    for i in range(n-1):
-        for j in range(0, n-i-1):
-            if allCompanies[j]["PRICE"] < allCompanies[j + 1]["PRICE"] :
-                allCompanies[j], allCompanies[j + 1] = allCompanies[j + 1], allCompanies[j]
-    return allCompanies
+# Create your python logic here.
 def makeSectorList(sector):
-    tadawul_db = client["Tadawul_v3"]
-    mycol=tadawul_db[sector]
-    theSectorList = list(mycol.find({}))
+    theSectorList=CompaniesGeneral.objects.filter(sector=sector)
     return theSectorList
-def allComs():
-    Communication_Services_Sector = makeSectorList("Communication_Services")
-    Consumer_Discretionary_Sector = makeSectorList("Consumer_Discretionary")
-    Consumer_Staples_Sector = makeSectorList("Consumer_Staples")
-    Energy_Sector = makeSectorList("Energy")
-    Financials_Sector = makeSectorList("Financials")
-    Health_Care_Sector = makeSectorList("Health_Care")
-    Industrials_Sector = makeSectorList("Industrials")
-    Information_Technology_Sector = makeSectorList("Information_Technology")
-    Materials_Sector = makeSectorList("Materials")
-    Real_Estate_Sector = makeSectorList("Real_Estate")
-    Utilities_Sector = makeSectorList("Utilities")
-    allCompanies=returnAllCompanies(Communication_Services_Sector,Consumer_Discretionary_Sector,Consumer_Staples_Sector,
-    Energy_Sector,Financials_Sector,Health_Care_Sector,Industrials_Sector,Information_Technology_Sector,Materials_Sector,
-    Real_Estate_Sector,Utilities_Sector)
-    return sortByPrice(allCompanies)
-def main(request):
-    filterObj = {
-    'Sector': 'All',
-    'PRICE': 'Any',
-    'MarketCap': 'Any',
-    'Pb': 'Any',
-    'Pe': 'Any',
-    'CurrentRatio': 'Any',
-    'DebtRatio': 'Any',
-    'Eps': 'Any',
-    'Ebit': 'Any',
-    'OperatingEps': 'Any',
-    'DividendYield': 'Any',
-    'QuickRatio': 'Any'
-    } 
-    request.session['filterObj'] = filterObj
-    return redirect('filter/Sector/catagory/All')
-
-# def sector(request,sectorVal):
-#     tadawul_db = client["Tadawul_v3"]
-#     if sectorVal == "All":
-#         all=allComs()
-#         context ={"allCompanies": all,
-#         "isAll": True
-#         }
-#         return render(request, 'main.html',context)
-#     else:
-#         all=makeSectorList(sectorVal)
-#         context ={"allCompanies": all,
-#         "isAll": False}
-#         return render(request, 'main.html',context)
+def allCompanies():
+    allCompanies=CompaniesGeneral.objects.all()
+    return allCompanies
 def isTheTickerThere(ticker,myList):
     for stock in myList:
         if stock['TICKER'] == ticker:
             return True
     return False
-def removeDuplicates(cuurentStocksList):
-    newStocksList = []
-    for stock in cuurentStocksList:
-        if not isTheTickerThere(stock['TICKER'],newStocksList):
-            newStocksList.append(stock)
-    return newStocksList
-def filterView(request,filterVal,catVal):
-    filterObj=request.session['filterObj'] 
-    filterObj[filterVal]=catVal
-    request.session['filterObj'] =filterObj
-    cuurentStocksList =filterTheStocks(request.session['filterObj'] )
-    context={
-        'cuurentStocksList':cuurentStocksList,
-        'isScreener':True,
-    }
-    return render(request, 'main.html',context)
 def filterTheStocks(filterObj):
     # Sector filter
     if filterObj['Sector']=='All':
-        theCurrentStocks = allComs()
+        theCurrentStocks = allCompanies()
     else:
         theCurrentStocks = makeSectorList(filterObj['Sector'])
     # Price filter
@@ -153,6 +56,7 @@ def filterTheStocks(filterObj):
     if filterObj['QuickRatio'] !='Any':
         theCurrentStocks=filterByQuickRatio(theCurrentStocks,filterObj['QuickRatio'])
     return theCurrentStocks
+
 def filterByQuickRatio(theCurrentStocks,catVal):
     newStocksList=[]
     readyStocksList=[]
@@ -170,7 +74,7 @@ def filterByQuickRatio(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByDividendYield(theCurrentStocks,catVal):
@@ -194,7 +98,7 @@ def filterByDividendYield(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByOperatingEps(theCurrentStocks,catVal):
@@ -214,7 +118,7 @@ def filterByOperatingEps(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByEbit(theCurrentStocks,catVal):
@@ -242,7 +146,7 @@ def filterByEbit(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByEps(theCurrentStocks,catVal):
@@ -262,7 +166,7 @@ def filterByEps(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByDebtRatio(theCurrentStocks,catVal):
@@ -282,7 +186,7 @@ def filterByDebtRatio(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByCurrentRatio(theCurrentStocks,catVal):
@@ -302,7 +206,7 @@ def filterByCurrentRatio(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByPe(theCurrentStocks,catVal):
@@ -322,7 +226,7 @@ def filterByPe(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByPb(theCurrentStocks,catVal):
@@ -342,7 +246,7 @@ def filterByPb(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker and x.year.split('_')[0] == "2020":
+            if int(stock.ticker) == x.ticker and x.year.split('_')[0] == "2020":
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByMarketCap(theCurrentStocks,catVal):
@@ -375,37 +279,100 @@ def filterByMarketCap(theCurrentStocks,catVal):
                 newStocksList.append(stock)
     for stock in theCurrentStocks:
         for x in newStocksList:
-            if int(stock['TICKER']) == x.ticker :
+            if int(stock.ticker) == x.ticker :
                 readyStocksList.append(stock)
     return readyStocksList
 def filterByPrice(theCurrentStocks,catVal):
     newStocksList=[]
     if catVal =='High':
         for stock in theCurrentStocks:
-            if int(stock['PRICE']) >100:
+            if int(stock.price) >100:
                 newStocksList.append(stock)
     elif catVal =='Low':
         for stock in theCurrentStocks:
-            if int(stock['PRICE']) <50:
+            if int(stock.price) <50:
                 newStocksList.append(stock)
     else:
         for stock in theCurrentStocks:
-            if int(stock['PRICE']) >= 50 and int(stock['PRICE']) <=100:
+            if int(stock.price) >= 50 and int(stock.price) <=100:
                 newStocksList.append(stock)
     return newStocksList
 
-def findComByTicker(Ticker):
-    allS=allComs()
-    for c in allS:
-        if int(c['TICKER']) == Ticker:
-            return c
-    return False
+def findComByTicker(Sector,Ticker):
+    tadawul_db = client["Tadawul_v3"]
+    sectorList = tadawul_db[Sector]
+    company = sectorList.find_one({"TICKER": int(Ticker)})
+    return company
 
 def isItCorrectSearch(searchData):
     if int(searchData) <= 9999:
         return True
     else:
         return False
+
+# def getMC(sectorVal,tickerVal):
+#     # sector = sectorVal
+#     # ticker = tickerVal
+#     # tadawul_db = client["Tadawul_v3"]
+#     # mycol = tadawul_db[sector]
+#     # res = mycol.find_one({"TICKER": int(ticker)})
+
+#     # price = float(res["PRICE"])
+#     # shares = int(res["ISSUED_SHARES"])
+#     # result= (price * shares)
+
+
+#     return Marketcap.objects.get(ticker=)
+def getInvestments(tickerVal):
+    # ALLc=allCompanies()
+    result={}
+    for c in allCompanies():
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['BALANCE_SHEET']['ANNUALLY']['2020_12_31']['Investments']
+    return result
+def getDepreciation(tickerVal):
+    ALLc=allCompanies()
+    result={}
+    for c in ALLc:
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['STATEMENT_OF_INCOME']['ANNUALLY']['2020_12_31']['Depreciation']
+    return result
+def getNetIncome(tickerVal):
+    ALLc=allCompanies()
+    result={}
+    for c in ALLc:
+        if int(c['TICKER']) == int(tickerVal):
+            result=c['CASH_FLOW']['ANNUALLY']['2020_12_31']['Net_Income']
+    return result
+
+# def removeDuplicates(cuurentStocksList):
+#     newStocksList = []
+#     for stock in cuurentStocksList:
+#         if not isTheTickerThere(stock['TICKER'],newStocksList):
+#             newStocksList.append(stock)
+#     return newStocksList
+
+
+
+# Create your views here.
+
+def main(request):
+    filterObj = {
+    'Sector': 'All',
+    'PRICE': 'Any',
+    'MarketCap': 'Any',
+    'Pb': 'Any',
+    'Pe': 'Any',
+    'CurrentRatio': 'Any',
+    'DebtRatio': 'Any',
+    'Eps': 'Any',
+    'Ebit': 'Any',
+    'OperatingEps': 'Any',
+    'DividendYield': 'Any',
+    'QuickRatio': 'Any'
+    } 
+    request.session['filterObj'] = filterObj
+    return redirect('filter/Sector/catagory/All')
 def searchT(request):
     if request.method =='POST':
         if isItCorrectSearch(request.POST['search']):
@@ -429,50 +396,32 @@ def searchT(request):
                 'thereIsResult':False
             }
             return render(request, 'searchResults.html',context)
-def getMC(sectorVal,tickerVal):
-    sector = sectorVal
-    ticker = tickerVal
-    tadawul_db = client["Tadawul_v3"]
-    mycol = tadawul_db[sector]
-    res = mycol.find_one({"TICKER": int(ticker)})
 
-    price = float(res["PRICE"])
-    shares = int(res["ISSUED_SHARES"])
-    result= (price * shares)
+def filterView(request,filterVal,catVal):
+    filterObj=request.session['filterObj'] 
+    filterObj[filterVal]=catVal
+    request.session['filterObj'] =filterObj
+    cuurentStocksList =filterTheStocks(request.session['filterObj'] )
+    context={
+        'cuurentStocksList':cuurentStocksList,
+        'isScreener':True,
+    }
+    return render(request, 'main.html',context)
 
-    return result
-def getInvestments(tickerVal):
-    # ALLc=allComs()
-    result={}
-    for c in allComs():
-        if int(c['TICKER']) == int(tickerVal):
-            result=c['BALANCE_SHEET']['ANNUALLY']['2020_12_31']['Investments']
-    return result
-def getDepreciation(tickerVal):
-    ALLc=allComs()
-    result={}
-    for c in ALLc:
-        if int(c['TICKER']) == int(tickerVal):
-            result=c['STATEMENT_OF_INCOME']['ANNUALLY']['2020_12_31']['Depreciation']
-    return result
-def getNetIncome(tickerVal):
-    ALLc=allComs()
-    result={}
-    for c in ALLc:
-        if int(c['TICKER']) == int(tickerVal):
-            result=c['CASH_FLOW']['ANNUALLY']['2020_12_31']['Net_Income']
-    return result
-def stockPage(request,tickerVal):
-    stock=findComByTicker(int(tickerVal))
+
+def stockPage(request,sectorVal,tickerVal):
+    stock=findComByTicker(sectorVal,int(tickerVal))
     context={
         'stock':stock,
         'isStock':True,
-        'MC':getMC(stock['SECTOR'],tickerVal),
-        'Investments':getInvestments(tickerVal),
-        'Depreciation':getDepreciation(tickerVal),
-        'NetIncome':getNetIncome(tickerVal)
+        'MC':Marketcap.objects.get(ticker=tickerVal),
+        # 'Investments':getInvestments(tickerVal),
+        # 'Depreciation':getDepreciation(tickerVal),
+        # 'NetIncome':getNetIncome(tickerVal)
     }
     return render(request, 'stockPage.html',context)
+
+# Create your API formulas
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal

@@ -56,7 +56,7 @@
       <div class="row mt-5">
           <div class="col-sm-4">
             <h5 class="card-text text-light">Market Cap</h5>
-            <p class="card-text ">{{MC}} (SAR)</p>
+            <p class="card-text ">{{MC.marketcap}} (SAR)</p>
           </div>
           <div class="col-sm-4">
             <h5 class="card-text text-light">Last updated</h5>
@@ -100,15 +100,15 @@
                     <div class="row d-flex">
                         <div class="col-sm-4">
                             <h6 class="card-text text-info ">Investments</h6>
-                            <p class="card-text fs-6">{{Investments}} </p>
+                            <p class="card-text fs-6">{{stock.BALANCE_SHEET.ANNUALLY.2020_12_31.Investments}} </p>
                         </div>
                         <div class="col-sm-4">
                             <h6 class="card-text text-info">Depreciation</h6>
-                            <p class="card-text fs-6">{{Depreciation}} </p>
+                            <p class="card-text fs-6">{{stock.STATEMENT_OF_INCOME.ANNUALLY.2020_12_31.Depreciation}} </p>
                         </div>
                         <div class="col-sm-4">
-                            <h6 class="card-text text-info">NetIncome</h6>
-                            <p class="card-text fs-6">{{NetIncome}}</p>
+                            <h6 class="card-text text-info">Net Income</h6>
+                            <p class="card-text fs-6">{{stock.CASH_FLOW.ANNUALLY.2020_12_31.Net_Income}}</p>
                         </div>
                     </div>
                 </div>
