@@ -20,20 +20,22 @@
         </thead>
         <tbody>
         {% if thereIsResult %}
+        {% for c in result %}
         <tr>
             <td></td>
-            <td class="sticky-col first-col">{{result.TICKER}}</td>
-            <td>{{result.NAME}}</td>
+            <td class="sticky-col first-col">{{c.ticker}}</td>
+            <td>{{c.name}}</td>
             <td>
-              {{ result.SECTOR|ReplaceUnderScore }}
+              {{ c.sector|ReplaceUnderScore }}
               
             </td>
-            <td>{{result.PRICE}}</td>
+            <td>{{c.price}}</td>
             <td>KSA</td>
-            <td>{{result.AUTHORIZED_CAPITAL}}</td>
-            <td>{{result.ISSUED_SHARES}}</td>
-            <td>{{result.PAID_CAPITAL}}</td>
+            <td>{{c.authorized_capital}}</td>
+            <td>{{c.issued_shares}}</td>
+            <td>{{c.paid_capital}}</td>
           </tr>
+          {% endfor %}
         {% endif %}
         </tbody>
       </table>

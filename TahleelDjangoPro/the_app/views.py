@@ -376,12 +376,12 @@ def main(request):
 def searchT(request):
     if request.method =='POST':
         if isItCorrectSearch(request.POST['search']):
-            if findComByTicker(int(request.POST['search'])):
-                result=findComByTicker(int(request.POST['search']))
+            company=CompaniesGeneral.objects.filter(ticker=request.POST['search'])
+            if company:
                 context ={
                     'correctSearch': True,
                     'thereIsResult':True,
-                    'result':result,
+                    'result':company,
                 }
                 return render(request, 'searchResults.html',context)
             else:
