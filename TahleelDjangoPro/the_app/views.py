@@ -5,6 +5,7 @@ import json
 
 
 # Create your python logic here.
+
 def makeSectorList(sector):
     theSectorList=CompaniesGeneral.objects.filter(sector=sector)
     return theSectorList
@@ -411,17 +412,42 @@ def filterView(request,filterVal,catVal):
 
 def stockPage(request,sectorVal,tickerVal):
     stock=findComByTicker(sectorVal,int(tickerVal))
+    dividend=0
+    dividendAvg=0
+    if sectorVal != 'Financials':
+        x=DividendYield.objects.get(ticker=tickerVal, year='2020_12_31')
+        dividend=x.value
+        s=DividendIndustryAverage.objects.get(sector=sectorVal, year='2020_12_31')
+        dividendAvg=s.Average
+    # print("yesssssssssssssss")
+    # print(dividend)
+    # print(dividendAvg)
     context={
+        'dividend':dividend,
+        'dividendAvg':dividendAvg,
         'stock':stock,
         'isStock':True,
-        'MC':Marketcap.objects.get(ticker=tickerVal),
-        # 'Investments':getInvestments(tickerVal),
-        # 'Depreciation':getDepreciation(tickerVal),
-        # 'NetIncome':getNetIncome(tickerVal)
+        'MC':Marketcap.objects.filter(ticker=tickerVal),
     }
     return render(request, 'stockPage.html',context)
 
 # Create your API formulas
+# def newDividendAvrgForSector(request,sectorVal):
+#     sectorList=makeSectorList(sectorVal)
+#     sectorDividendList=[]
+#     # put all sector dividends in one place
+#     for c in sectorList:
+#         for d in DividendYield.objects.all():
+#             if c.ticker == d.ticker and d.year == '2020_12_31':
+#                 sectorDividendList.append(d.value)
+#     # add them all 
+#     sum=0
+#     for d in sectorDividendList:
+#         sum=+d
+#     avg=sum/len(sectorDividendList)
+#     newAvg= DividendIndustryAverage.objects.create(sector= sectorVal,year='2020_12_31',Average=avg)
+#     newAvg.save()
+#     return redirect('/')
 def get_market_cap(request,sectorVal,tickerVal):
     sector = sectorVal
     ticker = tickerVal

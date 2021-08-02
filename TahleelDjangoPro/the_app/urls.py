@@ -5,6 +5,7 @@ urlpatterns= [
     path('', views.main),
     path('filter/<str:filterVal>/catagory/<str:catVal>', views.filterView),
     path('search/ticker', views.searchT),
+    # path('new/sector/<str:sectorVal>/average', views.newDividendAvrgForSector),
     path('stock/sector/<str:sectorVal>/ticker/<str:tickerVal>/page', views.stockPage),
     path('others/MarketCap/sector/<str:sectorVal>/ticker/<str:tickerVal>', views.get_market_cap),
     path('others/EPS/sector/<str:sectorVal>/ticker/<str:tickerVal>', views.get_EPS),

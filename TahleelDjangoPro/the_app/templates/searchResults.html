@@ -21,10 +21,10 @@
         <tbody>
         {% if thereIsResult %}
         {% for c in result %}
-        <tr>
+        <tr onclick='window.location="/stock/sector/{{c.sector}}/ticker/{{c.ticker}}/page"'>
             <td></td>
             <td class="sticky-col first-col">{{c.ticker}}</td>
-            <td>{{c.name}}</td>
+            <td><a href="/stock/sector/{{c.sector}}/ticker/{{c.ticker}}/page" class=" text-light" >{{c.name}}</a></td>
             <td>
               {{ c.sector|ReplaceUnderScore }}
               
