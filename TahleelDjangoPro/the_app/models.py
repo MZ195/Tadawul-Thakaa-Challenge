@@ -246,6 +246,7 @@ class DividendYield(models.Model):
     class Meta:
         managed = False
         db_table = 'dividend_yield'
+        
 class DividendIndustryAverage(models.Model):
     id = models.AutoField(primary_key=True)
     sector = models.TextField(blank=True, null=True)

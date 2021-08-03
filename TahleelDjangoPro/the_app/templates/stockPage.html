@@ -53,13 +53,14 @@
                 
             </div>
         </div>
-      <div class="row mt-5">
-          <div class="col-sm-4">
+
+        <div class="row mt-5">
+            <div class="col-sm-4">
             <h5 class="card-text text-light">Market Cap</h5>
             <p class="card-text ">
-                {% if m %}
+                {% if MC %}
                 {% for m in MC %}
-                {{MC.marketcap}} (SAR)
+                {{m.marketcap}} (SAR)
                 {% endfor %}
                 {% else %}
                 None
