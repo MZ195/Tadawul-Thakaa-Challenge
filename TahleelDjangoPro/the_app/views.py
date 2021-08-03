@@ -419,10 +419,19 @@ def stockPage(request,sectorVal,tickerVal):
         dividend=x.value
         s=DividendIndustryAverage.objects.get(sector=sectorVal, year='2020_12_31')
         dividendAvg=s.Average
-    # print("yesssssssssssssss")
-    # print(dividend)
-    # print(dividendAvg)
+    if dividend == 0.0:
+        dividend=1
+    if dividendAvg == 0.0:
+        dividendAvg=1
+    epsList=Eps.objects.filter(ticker=tickerVal)
+    DividendYieldList=DividendYield.objects.filter(ticker=tickerVal)
+    DividendsPerShareList=DividendsPerShare.objects.filter(ticker=tickerVal)
+    EpsList=Eps.objects.filter(ticker=tickerVal)
     context={
+        'EpsList':reversed(EpsList),
+        'DividendsPerShareList':reversed(DividendsPerShareList),
+        'DividendYieldList':reversed(DividendYieldList),
+        'epsList':reversed(epsList),
         'dividend':dividend,
         'dividendAvg':dividendAvg,
         'stock':stock,

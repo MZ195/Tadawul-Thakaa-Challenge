@@ -79,7 +79,7 @@
       </div>
     </div>
         <div class="card-body">
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-sm-7">
                     <h5 class="card-title text-info">{{stock.SECTOR|ReplaceUnderScore}} Summary</h5>
                     {% if stock.SECTOR|ReplaceUnderScore == 'Communication Services' %}
@@ -123,10 +123,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-2" >
+            <div class="row p-3  border border-dark" >
                 <div class="col-sm-4">
-                    <h5 class="text-info">1- Dividend</h5>
+                    <h5 class="text-light">Dividend vs Industry Average</h5>
                     <canvas id="myChart" width="100" height="100"></canvas>
+                </div>
+                <div class="col-sm-4">
+                    <h5 class="text-light">EaringS Per Share (EPS)</h5>
+                    <canvas id="lineChart" width="100" height="100"></canvas>
+                </div>
+                <div class="col-sm-4">
+                    <h5 class="text-light">Stability (Dividend Yield,Dividends PS & EPS)</h5>
+                    <canvas id="lineChart2" width="100" height="100"></canvas>
                 </div>
             </div>
             <script>
@@ -139,22 +147,22 @@
                         label: 'Dividends',
                         data: ['{{dividendAvg}}','{{dividend}}'],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                        borderWidth: 3
                     }]
                 },
                 options: {
@@ -166,9 +174,132 @@
                 }
             });
             </script>
+            <script>
+                var ctx = document.getElementById('lineChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2017','2018','2019','2020' ],
+                        datasets: [{
+                            label: 'Earing Per Share Flow',
+                            data: [{% for e in epsList %} '{{e.value}}',{% endfor %}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 3,
+                            pointHoverBackgroundColor:'rgba(255, 99, 132, 1)'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                </script>
+                <script>
+                    var ctx = document.getElementById('lineChart2').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['2017','2018','2019','2020' ],
+                            datasets: [{
+                                label: 'Dividend Yield',
+                                data: [{% for d in DividendYieldList %} '{{d.value}}',{% endfor %}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 3,
+                                pointHoverBackgroundColor:'rgba(255, 99, 132, 1)'
+                            },
+                            {
+                                label: 'Dividends PS',
+                                data: [{% for d in DividendsPerShareList %} '{{d.value}}',{% endfor %}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 3,
+                                pointHoverBackgroundColor:'rgba(255, 99, 132, 1)'
+                            }
+                            ,
+                            {
+                                label: 'EPS',
+                                data: [{% for e in EpsList %} '{{e.value}}',{% endfor %}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 3,
+                                pointHoverBackgroundColor:'rgba(255, 99, 132, 1)'
+                            }
+                        ]
+                        
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    </script>
 
         </div>
-  </div>
+</div>
 
 
 {% endblock %}
