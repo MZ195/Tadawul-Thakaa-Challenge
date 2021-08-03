@@ -3,7 +3,8 @@
 {% load customizedTags %}
 {% load static %}
 
-
+{% load static %}
+    <script src="{% static 'js/chartsPlugin.js' %}"></script> 
 
 <div class="card m-3  bg-dark text-light">
     {% if stock.SECTOR|ReplaceUnderScore == 'Communication Services' %}
@@ -181,6 +182,7 @@
                     data: {
                         labels: ['2017','2018','2019','2020' ],
                         datasets: [{
+                            fill: 'origin', 
                             label: 'Earing Per Share Flow',
                             data: [{% for e in epsList %} '{{e.value}}',{% endfor %}],
                             backgroundColor: [
@@ -219,6 +221,7 @@
                         data: {
                             labels: ['2017','2018','2019','2020' ],
                             datasets: [{
+                                fill: 'origin', 
                                 label: 'Dividend Yield',
                                 data: [{% for d in DividendYieldList %} '{{d.value}}',{% endfor %}],
                                 backgroundColor: [
@@ -241,6 +244,7 @@
                                 pointHoverBackgroundColor:'rgba(255, 99, 132, 1)'
                             },
                             {
+                                fill: 'origin', 
                                 label: 'Dividends PS',
                                 data: [{% for d in DividendsPerShareList %} '{{d.value}}',{% endfor %}],
                                 backgroundColor: [
@@ -264,6 +268,7 @@
                             }
                             ,
                             {
+                                fill: 'origin', 
                                 label: 'EPS',
                                 data: [{% for e in EpsList %} '{{e.value}}',{% endfor %}],
                                 backgroundColor: [
